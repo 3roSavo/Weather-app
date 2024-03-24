@@ -1,16 +1,23 @@
 // import { useState } from "react";
 import { useState } from "react";
 import { Container, Navbar, Nav, Form, Button } from "react-bootstrap";
+import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 
-const MyNav = ({ latAndLon }) => {
+const MyNav = () => {
+
+  const dispatch = useDispatch()
+
   const [nameCity, setNameCity] = useState("");
 
-  const Coordinates = () => {
+  const Coordinates = (e) => {
+
+    e.preventDefault()
+
     fetch(
       "http://api.openweathermap.org/geo/1.0/direct?q=" +
-        nameCity.replace(/ /g, "%20") +
-        "&limit=1&appid=a793bd006b5b59f0fb2f211b3e3cd738"
+      nameCity.replace(/ /g, "%20") +
+      "&limit=1&appid=a793bd006b5b59f0fb2f211b3e3cd738"
     )
       .then((response) => {
         if (response.ok) {
@@ -20,8 +27,16 @@ const MyNav = ({ latAndLon }) => {
         }
       })
       .then((obj) => {
-        console.log(obj);
-        latAndLon({ lat: obj[0].lat, lon: obj[0].lon });
+        //console.log(obj);
+
+        dispatch({
+          type: "CITY_COORDINATES",
+          payload: {
+            lat: obj[0].lat,
+            lon: obj[0].lon
+          }
+        })
+
         navigate("/weatherCountry");
       })
       .catch((err) => {
@@ -46,7 +61,7 @@ const MyNav = ({ latAndLon }) => {
             </Link>
             <Nav.Link href="#action2">Link</Nav.Link>
           </Nav>
-          <Form className="d-flex">
+          <Form className="d-flex" onSubmit={Coordinates}>
             <Form.Control
               type="search"
               placeholder="Inserisci città"
@@ -54,13 +69,12 @@ const MyNav = ({ latAndLon }) => {
               onChange={(e) => setNameCity(e.target.value)}
               className="me-2"
               aria-label="Search"
+              style={{ width: "250px" }}
             />
             <Button
               className="text-light border-light"
               variant="outline-success"
-              onClick={() => {
-                Coordinates();
-              }}
+              onClick={Coordinates}
             >
               Search
             </Button>

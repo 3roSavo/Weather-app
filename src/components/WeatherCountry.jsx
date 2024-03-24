@@ -1,16 +1,18 @@
 import { useEffect, useState } from "react";
-import { Card } from "react-bootstrap";
+import { useSelector } from "react-redux";
 
-const WeatherCountry = ({ coordinates }) => {
+const WeatherCountry = () => {
   const [infoCity, setInfoCity] = useState(null);
+
+  const coordinates = useSelector(state => state.coordinates)
 
   const fetchCoordinates = () => {
     fetch(
       "https://api.openweathermap.org/data/2.5/weather?lat=" +
-        coordinates.lat +
-        "&lon=" +
-        coordinates.lon +
-        "&units=metric&lang=it&appid=a793bd006b5b59f0fb2f211b3e3cd738"
+      coordinates.lat +
+      "&lon=" +
+      coordinates.lon +
+      "&units=metric&lang=it&appid=a793bd006b5b59f0fb2f211b3e3cd738"
     )
       .then((response) => {
         if (response.ok) {
