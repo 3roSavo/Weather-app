@@ -9,42 +9,19 @@ const MyNav = () => {
 
   const [nameCity, setNameCity] = useState("");
 
+  const navigate = useNavigate();
+
   const Coordinates = (e) => {
 
     e.preventDefault()
 
-    fetch(
-      "http://api.openweathermap.org/geo/1.0/direct?q=" +
-      nameCity.replace(/ /g, "%20") +
-      "&limit=1&appid=a793bd006b5b59f0fb2f211b3e3cd738"
-    )
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          throw new Error("errore nel recupero informazioni");
-        }
-      })
-      .then((obj) => {
-        console.log(obj);
+    dispatch({
+      type: "CITY_NAME",
+      payload: nameCity
+    })
 
-        dispatch({
-          type: "CITY_COORDINATES",
-          payload: {
-            lat: obj[0].lat,
-            lon: obj[0].lon
-          }
-        })
-
-        navigate("/weatherCountry");
-      })
-      .catch((err) => {
-        alert("Luogo con nome '" + nameCity + "' non trovato")
-        console.log(err);
-      });
   };
 
-  const navigate = useNavigate();
   return (
     <Navbar expand="lg" className="bg-body-tertiary bg-nav shadow-lg">
       <Container fluid>

@@ -24,8 +24,15 @@ body {
   background-color: rgb(153, 255, 221) !important;
 }
 
+.five-days-forecast-card {
+  background-color: rgb(128, 128, 128);
+  box-shadow: 7px 7px 40px rgb(45, 45, 45);
+}
 
-
+.five-days-icon {
+  max-width: 80px !important;
+  transform: scale(1.5);
+}
 
 .bg-nav {
   background: linear-gradient(90deg, rgba(250, 197, 29, 1) 0%, rgba(68, 85, 115, 1) 80%) !important;

@@ -1,18 +1,15 @@
 const initialState = {
-    coordinates: {
-        lat: 0,
-        lon: 0
-    }
+    cityName: "oslo"
 }
 
 const mainReducer = (state = initialState, action) => {
 
     switch (action.type) {
 
-        case "CITY_COORDINATES":
+        case "CITY_NAME":
             return {
                 ...state,
-                coordinates: action.payload
+                cityName: action.payload
             };
 
         default: return state

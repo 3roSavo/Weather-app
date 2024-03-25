@@ -8,15 +8,11 @@ const WeatherCountry = () => {
 
   const [urlimage, setUrlImage] = useState("")
 
-  const coordinates = useSelector(state => state.coordinates)
+  const cityName = useSelector(state => state.cityName)
 
   const getCurrentWeatherData = () => {
     fetch(
-      "https://api.openweathermap.org/data/2.5/weather?lat=" +
-      coordinates.lat +
-      "&lon=" +
-      coordinates.lon +
-      "&units=metric&lang=it&appid=a793bd006b5b59f0fb2f211b3e3cd738"
+      "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&units=metric&lang=it&appid=a793bd006b5b59f0fb2f211b3e3cd738"
     )
       .then((response) => {
         if (response.ok) {
@@ -37,7 +33,7 @@ const WeatherCountry = () => {
   const getFiveDaysForecast = () => {
 
     fetch(
-      "https://api.openweathermap.org/data/2.5/forecast?lat=" + coordinates.lat + "&lon=" + coordinates.lon + "&units=metric&appid=a793bd006b5b59f0fb2f211b3e3cd738"
+      "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&units=metric&appid=a793bd006b5b59f0fb2f211b3e3cd738"
     )
       .then((response) => {
         if (response.ok) {
@@ -62,6 +58,16 @@ const WeatherCountry = () => {
     const timezoneOffsetMs = timezoneOffset * 1000;
     const currentLocalTime = utcMilliseconds + timezoneOffsetMs + (new Date().getTimezoneOffset() * 60 * 1000); // Aggiunta del fuso orario locale
     return new Date(currentLocalTime);
+  }
+
+  const transformTimeStamp = (timestamp) => {
+    // Crea un oggetto Data utilizzando il timestamp (moltiplicato per 1000 per convertirlo da secondi a millisecondi)
+    const date = new Date(timestamp * 1000);
+
+    // Ottieni la data nel formato desiderato utilizzando toLocaleString()
+    const options = { weekday: 'short', day: '2-digit' };
+    const formattedDate = date.toLocaleString('it-IT', options).toUpperCase();
+    return formattedDate
   }
 
   const convertTimestampToTime = (timestamp) => {
@@ -110,7 +116,7 @@ const WeatherCountry = () => {
   useEffect(() => {
     getCurrentWeatherData();
     getFiveDaysForecast();
-  }, [coordinates]);
+  }, [cityName]);
 
   useEffect(() => {
     if (currentWeatherData !== null) {
@@ -231,6 +237,65 @@ const WeatherCountry = () => {
 
             </div>
 
+            <div className="five-days-forecast-card p-3 rounded-4">
+
+              <h5 className="text-center">Previsioni per 5 giorni</h5>
+
+              <div className="row mx-0">
+
+                <div className="col-12 d-flex mx-0 px-0 align-items-center justify-content-around">
+
+                  <div className="fw-bold fs-5">{transformTimeStamp(fiveDaysForecastData.list[7].dt)}</div>
+
+                  <div className=""><img className="five-days-icon" src={`http://openweathermap.org/img/wn/${fiveDaysForecastData.list[7].weather[0].icon}@4x.png`} alt="weather-icon" /></div>
+
+                  <div className=" fw-bold fs-5">{fiveDaysForecastData.list[7].main.temp}°C</div>
+
+                </div>
+
+                <div className="col-12 d-flex mx-0 px-0 align-items-center justify-content-around">
+
+                  <div className="fw-bold fs-5">{transformTimeStamp(fiveDaysForecastData.list[15].dt)}</div>
+
+                  <div className=""><img className="five-days-icon" src={`http://openweathermap.org/img/wn/${fiveDaysForecastData.list[15].weather[0].icon}@4x.png`} alt="weather-icon" /></div>
+
+                  <div className=" fw-bold fs-5">{fiveDaysForecastData.list[15].main.temp}°C</div>
+
+                </div>
+
+                <div className="col-12 d-flex mx-0 px-0 align-items-center justify-content-around">
+
+                  <div className="fw-bold fs-5">{transformTimeStamp(fiveDaysForecastData.list[23].dt)}</div>
+
+                  <div className=""><img className="five-days-icon" src={`http://openweathermap.org/img/wn/${fiveDaysForecastData.list[23].weather[0].icon}@4x.png`} alt="weather-icon" /></div>
+
+                  <div className=" fw-bold fs-5">{fiveDaysForecastData.list[23].main.temp}°C</div>
+
+                </div>
+
+                <div className="col-12 d-flex mx-0 px-0 align-items-center justify-content-around">
+
+                  <div className="fw-bold fs-5">{transformTimeStamp(fiveDaysForecastData.list[31].dt)}</div>
+
+                  <div className=""><img className="five-days-icon" src={`http://openweathermap.org/img/wn/${fiveDaysForecastData.list[31].weather[0].icon}@4x.png`} alt="weather-icon" /></div>
+
+                  <div className=" fw-bold fs-5">{fiveDaysForecastData.list[31].main.temp}°C</div>
+
+                </div>
+
+                <div className="col-12 d-flex mx-0 px-0 align-items-center justify-content-around">
+
+                  <div className="fw-bold fs-5">{transformTimeStamp(fiveDaysForecastData.list[39].dt)}</div>
+
+                  <div className=""><img className="five-days-icon" src={`http://openweathermap.org/img/wn/${fiveDaysForecastData.list[39].weather[0].icon}@4x.png`} alt="weather-icon" /></div>
+
+                  <div className=" fw-bold fs-5">{fiveDaysForecastData.list[39].main.temp}°C</div>
+
+                </div>
+
+              </div>
+            </div>
+
           </div>
 
           <aside className="col-12 col-md-4 p-3 ps-md-1">
@@ -241,7 +306,7 @@ const WeatherCountry = () => {
 
               <div className="row m-0">
 
-                <div className="d-flex flex-column flex-md-row flex-md-wrap col-6 col-sm-4 col-md-12  justify-content-around align-items-center  align-items-md-center p-0 mb-4 text-center">
+                <div className="d-flex flex-column flex-md-row flex-md-wrap col-6 col-sm-4 col-md-12  justify-content-around align-items-center pb-5 align-items-md-center p-0 text-center">
 
                   <div className="fs-5 fw-bold col-6 col-sm-4  col-md-12 col-lg-4">
                     {fiveDaysForecastData.list[0].dt_txt.slice(10, 16)}
@@ -259,7 +324,7 @@ const WeatherCountry = () => {
 
                 </div>
 
-                <div className="d-flex flex-column flex-md-row flex-md-wrap col-6 col-sm-4 col-md-12  justify-content-around align-items-center  align-items-md-center p-0 mb-4 text-center">
+                <div className="d-flex flex-column flex-md-row flex-md-wrap col-6 col-sm-4 col-md-12  justify-content-around align-items-center pb-5 align-items-md-center p-0 text-center">
 
                   <div className="fs-5 fw-bold col-6 col-sm-4  col-md-12 col-lg-4">
                     {fiveDaysForecastData.list[1].dt_txt.slice(10, 16)}
@@ -277,7 +342,7 @@ const WeatherCountry = () => {
 
                 </div>
 
-                <div className="d-flex flex-column flex-md-row flex-md-wrap col-6 col-sm-4 col-md-12  justify-content-around align-items-center  align-items-md-center p-0 mb-4 text-center">
+                <div className="d-flex flex-column flex-md-row flex-md-wrap col-6 col-sm-4 col-md-12  justify-content-around align-items-center pb-5 align-items-md-center p-0 text-center">
 
                   <div className="fs-5 fw-bold col-6 col-sm-4  col-md-12 col-lg-4">
                     {fiveDaysForecastData.list[2].dt_txt.slice(10, 16)}
@@ -295,7 +360,7 @@ const WeatherCountry = () => {
 
                 </div>
 
-                <div className="d-flex flex-column flex-md-row flex-md-wrap col-6 col-sm-4 col-md-12  justify-content-around align-items-center  align-items-md-center p-0 mb-4 text-center">
+                <div className="d-flex flex-column flex-md-row flex-md-wrap col-6 col-sm-4 col-md-12  justify-content-around align-items-center pb-5 pb-sm-2 pb-md-5 align-items-md-center p-0 text-center">
 
                   <div className="fs-5 fw-bold col-6 col-sm-4  col-md-12 col-lg-4">
                     {fiveDaysForecastData.list[3].dt_txt.slice(10, 16)}
@@ -313,7 +378,7 @@ const WeatherCountry = () => {
 
                 </div>
 
-                <div className="d-flex flex-column flex-md-row flex-md-wrap col-6 col-sm-4 col-md-12  justify-content-around align-items-center  align-items-md-center p-0 mb-4 text-center">
+                <div className="d-flex flex-column flex-md-row flex-md-wrap col-6 col-sm-4 col-md-12  justify-content-around align-items-center pb-2 align-items-md-center p-0 text-center">
 
                   <div className="fs-5 fw-bold col-6 col-sm-4  col-md-12 col-lg-4">
                     {fiveDaysForecastData.list[4].dt_txt.slice(10, 16)}
@@ -331,7 +396,7 @@ const WeatherCountry = () => {
 
                 </div>
 
-                <div className="d-flex flex-column d-md-none flex-md-row flex-md-wrap col-6 col-sm-4 col-md-12  justify-content-around align-items-center  align-items-md-center p-0 mb-4 text-center">
+                <div className="d-flex flex-column d-md-none flex-md-row flex-md-wrap col-6 col-sm-4 col-md-12  justify-content-around align-items-center pb-2 align-items-md-center p-0 text-center">
 
                   <div className="fs-5 fw-bold col-6 col-sm-4  col-md-12 col-lg-4">
                     {fiveDaysForecastData.list[5].dt_txt.slice(10, 16)}
@@ -354,7 +419,6 @@ const WeatherCountry = () => {
             </div>
 
           </aside>
-
 
         </div>
       )}
