@@ -1,5 +1,5 @@
 body {
-  background: rgb(28,107,117);
+  background: rgb(28, 107, 117);
   background: linear-gradient(180deg, rgb(28, 107, 117) 0%, rgb(255, 255, 255) 100%);
   background-repeat: no-repeat;
   background-size: cover;
@@ -9,7 +9,8 @@ body {
 .imgHome {
   background-image: url(./assets/pexels-johannes-plenio-1118873.jpg);
   background-size: cover;
-  background-position:center;;
+  background-position: center;
+  ;
   height: 100vh;
   width: 100%;
   background-repeat: no-repeat;
@@ -20,12 +21,64 @@ body {
 }
 
 .bg-footer {
-  background-color:rgb(153, 255, 221) !important;
+  background-color: rgb(153, 255, 221) !important;
 }
 
 
 
 
 .bg-nav {
-background: linear-gradient(90deg, rgba(250,197,29,1) 0%, rgba(68,85,115,1) 80%) !important;
+  background: linear-gradient(90deg, rgba(250, 197, 29, 1) 0%, rgba(68, 85, 115, 1) 80%) !important;
+}
+
+.hour-time {
+  font-size: 60px;
+  font-weight: bold;
+}
+
+.weekday-time {
+  font-weight: bold;
+  background-color: rgba(0, 0, 0, 0.500);
+  padding: 4px 10px 4px 10px;
+  border-radius: 25px;
+}
+
+.card-settings {
+  background-size: cover;
+  background-repeat: no-repeat;
+  border: none !important;
+  box-shadow: 7px 7px 40px rgb(45, 45, 45);
+  text-shadow: 3px 3px 6px rgb(0, 0, 0);
+}
+
+.main-degrees {
+  margin-top: 15px;
+  line-height: 1.0;
+  font-weight: bolder;
+}
+
+.weather-img {
+  width: 100% !important;
+}
+
+.title-spacing {
+  line-height: 1.1;
+}
+
+.side-card-currentWeather {
+  background-color: rgba(0, 255, 255, 0.415);
+  border: none;
+  box-shadow: 7px 7px 40px rgb(45, 45, 45);
+}
+
+.sunrise-set {
+  font-size: 17px;
+}
+
+.side-info {
+  font-size: 15px;
+}
+
+.data {
+  font-size: 18px;
 }

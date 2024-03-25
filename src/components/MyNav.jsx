@@ -1,4 +1,3 @@
-// import { useState } from "react";
 import { useState } from "react";
 import { Container, Navbar, Nav, Form, Button } from "react-bootstrap";
 import { useDispatch } from "react-redux";
@@ -27,7 +26,7 @@ const MyNav = () => {
         }
       })
       .then((obj) => {
-        //console.log(obj);
+        console.log(obj);
 
         dispatch({
           type: "CITY_COORDINATES",
@@ -40,6 +39,7 @@ const MyNav = () => {
         navigate("/weatherCountry");
       })
       .catch((err) => {
+        alert("Luogo con nome '" + nameCity + "' non trovato")
         console.log(err);
       });
   };
