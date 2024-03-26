@@ -12,7 +12,8 @@ body {
 }
 
 .five-days-forecast-card {
-  background-color: rgb(128, 128, 128);
+  background-color: rgba(128, 128, 128, 0.75);
+  backdrop-filter: blur(3px);
   box-shadow: 7px 7px 40px rgb(45, 45, 45);
 }
 
@@ -20,6 +21,33 @@ body {
   max-width: 80px !important;
   transform: scale(1.5);
 }
+
+.main-box {
+  height: 200px;
+  overflow: hidden;
+  margin-bottom: 30px;
+}
+
+
+.weather-box {
+  animation: slideUp 15s infinite linear;
+  overflow: hidden;
+}
+
+@keyframes slideUp {
+  0% {
+    transform: translateY(0);
+    /* Partenza: nessuna trasformazione */
+  }
+
+  100% {
+    transform: translateY(-100%);
+    /* Fine: sposta verso l'alto del 100% dell'altezza del contenitore */
+  }
+}
+
+
+
 
 .bg-nav {
   background: linear-gradient(90deg, rgba(250, 197, 29, 1) 0%, rgba(68, 85, 115, 1) 80%) !important;
@@ -65,13 +93,19 @@ body {
 
 .side-card-currentWeather {
   background-color: rgba(0, 255, 255, 0.415);
+  backdrop-filter: blur(3px);
   border: none;
   box-shadow: 7px 7px 40px rgb(45, 45, 45);
 }
 
 .card-aside {
   background-color: rgba(0, 255, 42, 0.449);
+  backdrop-filter: blur(3px);
   box-shadow: 7px 7px 40px rgb(45, 45, 45);
+}
+
+.card-weather-style {
+  box-shadow: 5px 5px 5px rgb(21, 21, 21);
 }
 
 .hourly-icon {
