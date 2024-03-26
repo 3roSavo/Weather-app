@@ -1,23 +1,10 @@
 body {
-  background: rgb(28, 107, 117);
-  background: linear-gradient(180deg, rgb(28, 107, 117) 0%, rgb(255, 255, 255) 100%);
+  width: 100%;
+  background-image: url(./assets/pexels-johannes-plenio-1118873.jpg);
+  background-position: left;
   background-repeat: no-repeat;
   background-size: cover;
   min-height: 100vh;
-}
-
-.imgHome {
-  background-image: url(./assets/pexels-johannes-plenio-1118873.jpg);
-  background-size: cover;
-  background-position: center;
-  ;
-  height: 100vh;
-  width: 100%;
-  background-repeat: no-repeat;
-}
-
-.headings {
-  text-shadow: 1px 1px 2px rgb(255, 255, 255);
 }
 
 .bg-footer {
@@ -106,4 +93,58 @@ body {
 
 .data {
   font-size: 18px;
+}
+
+.headings {
+  text-shadow: 1px 1px 2px rgb(255, 255, 255);
+  font-size: 2.125rem !important;
+}
+
+
+
+
+@keyframes slide {
+  0% {
+    top: 0;
+  }
+
+  25% {
+    top: -100%;
+  }
+
+  50% {
+    top: -200%;
+  }
+
+  75% {
+    top: -300%;
+  }
+}
+
+.roller #rolltext {
+  position: absolute;
+  top: 0;
+  animation: slide 5s infinite;
+}
+
+.roller {
+  height: 40px !important;
+  line-height: 1.9rem !important;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  display: flex;
+}
+
+.carousel-settings {
+  height: 300px !important;
+  width: 100%;
+  box-shadow: 7px 7px 40px rgb(0, 0, 0);
+}
+
+.img-carousel {
+  object-fit: cover;
+  image-rendering: optimizeQuality;
+  width: 100% !important;
+  height: 300px !important;
 }
