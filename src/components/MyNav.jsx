@@ -13,13 +13,19 @@ const MyNav = () => {
 
   const Coordinates = (e) => {
 
-    e.preventDefault()
+    if (nameCity === "") {
+      alert("Attenzione inserisci prima una città")
+    } else {
 
-    dispatch({
-      type: "CITY_NAME",
-      payload: nameCity
-    })
+      e.preventDefault()
 
+      dispatch({
+        type: "CITY_NAME",
+        payload: nameCity
+      })
+
+      navigate("/weatherCountry")
+    }
   };
 
   return (
