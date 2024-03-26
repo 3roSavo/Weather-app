@@ -302,11 +302,11 @@ const WeatherCountry = () => {
 
           <aside className="col-12 col-md-4 p-3 ps-md-1">
 
-            <div className="card-aside h-100 rounded-4 p-2">
+            <div className="card-aside h-100 d-flex flex-column  rounded-4 p-2">
 
-              <h5 className="text-center fw-bold">Previsioni orarie</h5>
+              <h5 className="text-center fw-bold mb-md-0">Previsioni orarie</h5>
 
-              <div className="row d-md-flex flex-md-column h-100 justify-content-between m-0">
+              <div className="row d-md-flex flex-md-column h-100 justify-content-around m-0">
 
                 <div className="d-flex flex-column flex-md-row flex-md-wrap col-6 col-sm-4 col-md-12  justify-content-around align-items-center pb-5 pb-md-0 pb-lg-0 align-items-md-center p-0 text-center">
 
