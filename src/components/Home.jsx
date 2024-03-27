@@ -18,11 +18,6 @@ const Home = () => {
     console.log("Latitude: " + latitude + ", Longitude: " + longitude);
   }
 
-
-
-
-
-
   const getPhotoLocations = async () => {
     try {
       const requests = nameLocations.map(location =>
@@ -141,7 +136,7 @@ const Home = () => {
 
         <div className="row justify-content-center px-0 pt-3 pb-5  mx-0">
 
-          <div id="carouselExampleCaptions" className="carousel slide carousel-settings rounded-4 px-0 col-12 col-md-10 col-lg-7" data-bs-ride="true">
+          <div id="carouselExampleCaptions" className="carousel slide carousel-settings rounded-4 px-0 col-12 col-md-10 col-lg-7" data-bs-ride="carousel">
             <div className="carousel-indicators">
               <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
               <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>

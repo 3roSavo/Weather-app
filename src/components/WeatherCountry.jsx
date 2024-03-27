@@ -11,6 +11,8 @@ const WeatherCountry = () => {
 
   const cityName = useSelector(state => state.cityName)
 
+  const [currentTime, setCurrentTime] = useState(null)
+
   const [loading, setLoading] = useState(false)
 
   const navigate = useNavigate()
@@ -72,12 +74,15 @@ const WeatherCountry = () => {
       });
   }
 
-  const getLocalTime = (timezoneOffset) => {
+  const getLocalTime = () => {
 
     const currentUtcTime = new Date();
     const utcMilliseconds = currentUtcTime.getTime();
-    const timezoneOffsetMs = timezoneOffset * 1000;
+
+    const timezoneOffsetMs = currentWeatherData.timezone * 1000;
+
     const currentLocalTime = utcMilliseconds + timezoneOffsetMs + (new Date().getTimezoneOffset() * 60 * 1000); // Aggiunta del fuso orario locale
+
     return new Date(currentLocalTime);
   }
 
@@ -91,13 +96,15 @@ const WeatherCountry = () => {
     return formattedDate
   }
 
-  const convertTimestampToTime = (timestamp) => {
+  const convertTimestampToTime = (sunriseOrSunsetUTC, timezone) => {
     // Crea un oggetto data utilizzando il timestamp
-    const date = new Date(timestamp * 1000); // Moltiplica per 1000 per convertire secondi in millisecondi
+    const date = new Date(sunriseOrSunsetUTC * 1000 + timezone * 1000); // Moltiplica per 1000 per convertire secondi in millisecondi e aggiunge il fuso orario locale nostro
+    // new date torna una data inclusiva del fuso orario locale reperito dal browser
+    // con i metodi getUTC....() escludiamo il fuso orario locale per poi aggiungerci quello voluto (timezone)
 
-    // Ottieni ore e minuti dalla data
-    const hours = date.getHours();
-    const minutes = date.getMinutes();
+    // Ottieni ore e minuti dalla data, eliminando il fuso orario locale nostro automaticamente aggiungo precedentemente dall'oggetto Date
+    const hours = date.getUTCHours();
+    const minutes = date.getUTCMinutes();
 
     // Formatta l'output
     const formattedTime = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
@@ -144,6 +151,28 @@ const WeatherCountry = () => {
   }, [cityName]);
 
   useEffect(() => {
+
+    if (currentWeatherData) {
+
+      const dateUpdate = setInterval(() => {
+
+        getLocalTime()
+        setCurrentTime(getLocalTime)
+
+        console.log(new Date())
+        //console.log(currentWeatherData.timezone * 1000)
+        //console.log(new Date().getTimezoneOffset())
+
+
+      }, 1000);
+
+      return () => clearInterval(dateUpdate);
+
+    }
+
+  }, [currentWeatherData])
+
+  useEffect(() => {
     if (currentWeatherData !== null) {
       getCountryPhoto()
     }
@@ -167,16 +196,16 @@ const WeatherCountry = () => {
 
                 <div className=" card-body ">
                   <h1 className=" card-title text-center m-0">
-                    {currentWeatherData.name}
+                    {currentWeatherData.name} ({currentWeatherData.sys.country})
                   </h1>
 
                   <div className="card-text text-center hour-time">
-                    {getLocalTime(currentWeatherData.timezone).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                    {currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: "2-digit" })}
                   </div>
 
                   <div className="text-center">
                     <span className="weekday-time ">
-                      {getLocalTime(currentWeatherData.timezone).toLocaleString('it-IT', { weekday: 'long', day: 'numeric', month: 'short' })}
+                      {currentTime.toLocaleString('it-IT', { weekday: 'long', day: 'numeric', month: 'short' })}
                     </span>
                   </div>
 
@@ -208,7 +237,7 @@ const WeatherCountry = () => {
 
                           <div className="text-start col-6 px-0">
                             <div className=" fw-bold sunrise-set">Alba</div>
-                            <div>{convertTimestampToTime(currentWeatherData.sys.sunrise)}</div>
+                            <div>{convertTimestampToTime(currentWeatherData.sys.sunrise, currentWeatherData.timezone)}</div>
                           </div>
 
 
@@ -220,7 +249,7 @@ const WeatherCountry = () => {
 
                           <div className="text-start col-6 px-0">
                             <div className=" fw-bold sunrise-set">Tramonto</div>
-                            <div>{convertTimestampToTime(currentWeatherData.sys.sunset)}</div>
+                            <div>{convertTimestampToTime(currentWeatherData.sys.sunset, currentWeatherData.timezone)}</div>
                           </div>
 
                         </div>
