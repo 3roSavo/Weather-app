@@ -5,7 +5,7 @@ const Home = () => {
   const nameLocations = ["Roma", "Sahara", "Antartica", "Singapore", "Hawai"]
   const [photoLocations, setPhotoLocations] = useState(null)
 
-  const countries = ["New York", "Parigi", "Melbourne", "Casablanca", "Oslo", "Tokyo", "Riga", "Londra", "Madrid", "Reykjavik", "Berlino", "Nairobi"]
+  const countries = ["New York", "Parigi", "Melbourne", "Casablanca", "Oslo", "Tokyo", "Riga", "Londra", "Madrid", "Reykjavik", "Berlino", "Nairobi", "Bucarest", "Dublino", "Seoul", "Algeri"]
   const [weatherForecast, setWeatherForecast] = useState(null)
 
 
@@ -126,17 +126,16 @@ const Home = () => {
                 </div>
               })}
 
-
-
             </div>
-          </div>}
+          </div>
+        }
 
       </div>
       {photoLocations &&
 
         <div className="row justify-content-center px-0 pt-3 pb-5  mx-0">
 
-          <div id="carouselExampleCaptions" className="carousel slide carousel-settings rounded-4 px-0 col-12 col-md-10 col-lg-7" data-bs-ride="carousel">
+          <div id="carouselExampleCaptions" className="carousel slide carousel-settings rounded-4 px-0 col-12 col-md-10 col-lg-7" data-bs-ride="carousel" data-bs-interval="5000">
             <div className="carousel-indicators">
               <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
               <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>

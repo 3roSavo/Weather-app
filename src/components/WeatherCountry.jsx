@@ -143,6 +143,7 @@ const WeatherCountry = () => {
 
   useEffect(() => {
 
+    setCurrentTime(null)
     setCurrentWeatherData(null)
     setFiveDaysForecastData(null)
 
@@ -200,13 +201,23 @@ const WeatherCountry = () => {
                   </h1>
 
                   <div className="card-text text-center hour-time">
-                    {currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: "2-digit" })}
+
+                    {!currentTime &&
+                      <div className="spinner-border" role="status">
+                        <span className="visually-hidden">Loading...</span>
+                      </div>
+                    }
+
+                    {currentTime &&
+                      currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: "2-digit" })
+                    }
+
                   </div>
 
                   <div className="text-center">
-                    <span className="weekday-time ">
+                    {currentTime && <span className="weekday-time ">
                       {currentTime.toLocaleString('it-IT', { weekday: 'long', day: 'numeric', month: 'short' })}
-                    </span>
+                    </span>}
                   </div>
 
                 </div>
