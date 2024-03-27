@@ -42,7 +42,7 @@ const MyNav = () => {
             <Link to="/" className="nav-link" id="home-button">
               Home
             </Link>
-            <Nav.Link href="#action2">Link</Nav.Link>
+            <Nav.Link href="https://github.com/3roSavo/Weather-app.git">GitHub <i class="bi bi-github"></i></Nav.Link>
           </Nav>
           <Form className="d-flex" onSubmit={Coordinates}>
             <Form.Control

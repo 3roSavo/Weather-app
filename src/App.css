@@ -30,7 +30,7 @@ body {
 
 
 .weather-box {
-  animation: slideUp 15s infinite linear;
+  animation: slideUp 18s infinite linear;
   overflow: hidden;
 }
 
@@ -181,4 +181,48 @@ body {
   image-rendering: optimizeQuality;
   width: 100% !important;
   height: 300px !important;
+}
+
+
+.loader {
+  z-index: 1000;
+  width: 45px;
+  height: 45px;
+  position: relative;
+  top: 15px;
+  left: 50%;
+  right: 50%;
+  border-radius: 50%;
+  color: #ffffff;
+  animation: fill 1s ease-in infinite alternate;
+}
+
+.loader::before,
+.loader::after {
+  content: '';
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+  left: 60px;
+  top: 0;
+  animation: fill 0.9s ease-in infinite alternate;
+}
+
+.loader::after {
+  left: auto;
+  right: 60px;
+  animation-duration: 1.1s;
+}
+
+@keyframes fill {
+  0% {
+    box-shadow: 0 0 0 2px inset;
+    color: rgb(145, 144, 237);
+  }
+
+  100% {
+    box-shadow: 0 0 0 10px inset;
+    color: aqua;
+  }
 }

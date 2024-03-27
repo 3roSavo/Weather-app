@@ -9,6 +9,20 @@ const Home = () => {
   const [weatherForecast, setWeatherForecast] = useState(null)
 
 
+
+  const showPosition = position => {
+
+    const latitude = position.coords.latitude;
+    const longitude = position.coords.longitude;
+
+    console.log("Latitude: " + latitude + ", Longitude: " + longitude);
+  }
+
+
+
+
+
+
   const getPhotoLocations = async () => {
     try {
       const requests = nameLocations.map(location =>
@@ -61,6 +75,13 @@ const Home = () => {
 
 
   useEffect(() => {
+
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(showPosition);
+    } else {
+      console.log("Geolocation is not supported by this browser.");
+    }
+
     getPhotoLocations()
     getCurrentWeatherData()
   }, [])
