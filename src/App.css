@@ -130,8 +130,7 @@ body {
 }
 
 .headings {
-  text-shadow: 1px 1px 2px rgb(255, 255, 255);
-  font-size: 2.125rem !important;
+  text-shadow: 1px 1px 5px rgb(255, 255, 255);
 }
 
 
@@ -225,4 +224,41 @@ body {
     box-shadow: 0 0 0 10px inset;
     color: aqua;
   }
+}
+
+.local-weather-icon {
+  max-width: 130px !important;
+  transform: scale(1.5);
+}
+
+.local-position-weather-card {
+  box-shadow: 7px 7px 40px rgb(0, 0, 0);
+  background-color: rgba(22, 213, 213, 0.7);
+  backdrop-filter: blur(8px) !important;
+}
+
+@keyframes rotate {
+  0% {
+    /*transform: rotate(0deg);*/
+
+  }
+
+  50% {
+    transform: rotate(90deg);
+    color: rgb(187, 187, 253);
+  }
+
+  100% {
+    /*transform: rotate(0deg);*/
+  }
+}
+
+.cursor-icon {
+  animation-name: rotate !important;
+  animation-duration: 2s !important;
+  /* Puoi regolare la durata dell'animazione */
+  animation-timing-function: linear !important;
+  /* L'animazione procede con costanza */
+  animation-iteration-count: infinite !important;
+  /* L'animazione si ripete all'infinito */
 }

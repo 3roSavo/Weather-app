@@ -8,20 +8,48 @@ const Home = () => {
   const countries = ["New York", "Parigi", "Melbourne", "Casablanca", "Oslo", "Tokyo", "Riga", "Londra", "Madrid", "Reykjavik", "Berlino", "Nairobi", "Bucarest", "Dublino", "Seoul", "Algeri"]
   const [weatherForecast, setWeatherForecast] = useState(null)
 
+  const [userPosition, setUserPosition] = useState(null)
+  const [userWeather, setUserWeather] = useState(null)
+
 
 
   const showPosition = position => {
 
-    const latitude = position.coords.latitude;
-    const longitude = position.coords.longitude;
+    //console.log(position)
+    //console.log("Latitude: " + position.coords.latitude + ", Longitude: " + position.coords.longitude);
 
-    console.log("Latitude: " + latitude + ", Longitude: " + longitude);
+    setUserPosition({
+      latitude: position.coords.latitude,
+      longitude: position.coords.longitude
+    })
+
+  }
+
+  const getlocalWeather = () => {
+
+    fetch("https://api.openweathermap.org/data/2.5/weather?lat=" + userPosition.latitude + "&lon=" + userPosition.longitude + "&units=metric&lang=it&appid=a793bd006b5b59f0fb2f211b3e3cd738")
+      .then(response => {
+        if (response.ok) {
+          return response.json()
+        } else {
+          return response.json()
+            .then(errorData => { throw new Error(errorData.message) })
+        }
+      })
+      .then(data => {
+        console.log(data)
+        setUserWeather(data)
+      })
+      .catch(error => {
+        console.log(error)
+        alert(error)
+      })
   }
 
   const getPhotoLocations = async () => {
     try {
       const requests = nameLocations.map(location =>
-        fetch("https://api.pexels.com/v1/search?query=" + location + "&per_page=1", {
+        fetch("https://api.pexels.com/v1/search?query=" + location + "&per_page=10", {
           headers: {
             "Authorization": "ifbuQCuGTrbmEOof10n9yXGfVaWjUFcpLwodmFpq5GtLg0BZxQJcDjHy"
           }
@@ -81,12 +109,19 @@ const Home = () => {
     getCurrentWeatherData()
   }, [])
 
+  useEffect(() => {
+
+    if (userPosition) {
+      getlocalWeather()
+    }
+  }, [userPosition])
+
 
   return (
 
     <div className="imgHome row mx-0 px-3 justify-content-center">
 
-      <div className="col-12 col-lg-6 col-xxl-4">
+      <div className="col-12 col-lg-6 col-xxl-5">
         <h1 className="headings pt-5">Il tempo, in tempo reale!</h1>
         <div className="roller">
           <div id="rolltext" className="headings fs-3">
@@ -100,7 +135,7 @@ const Home = () => {
       </div>
 
 
-      <div className="mt-4 row mx-0 justify-content-center  col-12 col-lg-6 col-xxl-8 px-0">
+      <div className="mt-4 row mx-0 justify-content-center  col-12 col-lg-6 col-xxl-7 px-0">
 
         {weatherForecast &&
 
@@ -110,7 +145,7 @@ const Home = () => {
 
               {weatherForecast.map(element => {
 
-                return <div className="col-6 col-sm-4 col-md-3 col-lg-4 p-2" key={element.id}>
+                return <div className="col-6 col-sm-4 col-md-3 col-lg-4 col-xxl-3 p-2" key={element.id}>
 
                   <div className="bg-info bg-opacity-75 rounded-4 card-weather-style text-center py-3">
                     <h6 className="fw-bold">{element.name}</h6>
@@ -133,81 +168,133 @@ const Home = () => {
       </div>
       {photoLocations &&
 
-        <div className="row justify-content-center px-0 pt-3 pb-5  mx-0">
+        <div className="mt-2">
 
-          <div id="carouselExampleCaptions" className="carousel slide carousel-settings rounded-4 px-0 col-12 col-md-10 col-lg-7" data-bs-ride="carousel" data-bs-interval="5000">
-            <div className="carousel-indicators">
-              <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
-              <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-              <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-              <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"></button>
-              <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="4" aria-label="Slide 5"></button>
+          <div className="text-center"><span className="fs-2 bg-dark text-light bg-opacity-50 px-3 rounded-5 py-1">La tua zona <i className="bi bi-cursor-fill cursor-icon d-inline-block "></i></span></div>
+
+          <div className="row justify-content-center px-0 pt-3 pb-5 mx-0">
+
+            <div className="col-10 col-sm-9 col-md-6 px-0 px-md-3 py-3 py-md-0">
+
+              {userWeather &&
+                <div className="local-position-weather-card rounded-4 p-3 h-100">
+
+                  <h5 className="text-center">{userWeather.name}</h5>
+
+                  <div className="row mx-0 align-items-center justify-content-center ">
+                    <img className="local-weather-icon px-3" src={`http://openweathermap.org/img/wn/${userWeather.weather[0].icon}@4x.png`} alt="" />
+                    <div className="col-4 ps-2 fw-bold fs-5">{userWeather.main.temp}°C</div>
+                    <div className="col-12 fw-bold fs-4 text-center">{userWeather.weather[0].description}</div>
+
+                    <div className="col-12 row mx-0 px-0 mt-2">
+
+                      <div className="col-6 col-sm-3 text-center px-0">
+                        <i className="bi bi-water fs-2"></i>
+                        <div className="fw-bold">{userWeather.main.humidity}%</div>
+                        <div>Umidità</div>
+                      </div>
+
+                      <div className="col-6 col-sm-3 text-center px-0">
+                        <i className="bi bi-wind fs-2"></i>
+                        <div className="fw-bold">{userWeather.wind.speed}m/s</div>
+                        <div>Vel. vento</div>
+                      </div>
+
+                      <div className="col-6 col-sm-3 text-center px-0 mt-3 mt-sm-0">
+                        <i className="bi bi-thermometer-snow fs-2"></i>
+                        <div className="fw-bold">{userWeather.main.temp_min}°C</div>
+                        <div>Min °C</div>
+                      </div>
+
+                      <div className="col-6 col-sm-3 text-center px-0 mt-3 mt-sm-0">
+                        <i className="bi bi-thermometer-sun fs-2"></i>
+                        <div className="fw-bold">{userWeather.main.temp_max}°C</div>
+                        <div>Max °C</div>
+                      </div>
+
+                    </div>
+
+                  </div>
+
+                </div>
+              }
+
             </div>
-            <div className="carousel-inner rounded-4">
-              <div className="carousel-item active">
 
-                <div className="">
-                  <img className="img-carousel rounded-4" src={photoLocations[0].photos[0].src.large} alt="..." />
-                </div>
-
-                <span className="carousel-caption d-none d-sm-block bg-black bg-opacity-50 py-0 mb-4 rounded-5 fw-bold ">
-                  {photoLocations[0].photos[0].alt}
-                </span>
-
+            <div id="carouselExampleCaptions" className="carousel slide carousel-settings rounded-4 px-0 col-12 col-md-6 col-lg-7" data-bs-ride="carousel" data-bs-interval="5000">
+              <div className="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="4" aria-label="Slide 5"></button>
               </div>
-              <div className="carousel-item">
+              <div className="carousel-inner rounded-4">
+                <div className="carousel-item active">
 
-                <div className="">
-                  <img className="img-carousel rounded-4" src={photoLocations[1].photos[0].src.large} alt="..." />
+                  <div className="">
+                    <img className="img-carousel rounded-4" src={photoLocations[0].photos[0].src.large} alt="..." />
+                  </div>
+
+                  <span className="carousel-caption d-none d-sm-block bg-black bg-opacity-50 py-0 mb-4 rounded-5 fw-bold ">
+                    {photoLocations[0].photos[0].alt}
+                  </span>
+
                 </div>
+                <div className="carousel-item">
 
-                <span className="carousel-caption d-none d-sm-block bg-black bg-opacity-50 py-0 mb-4 rounded-5 fw-bold ">
-                  {photoLocations[1].photos[0].alt}
-                </span>
+                  <div className="">
+                    <img className="img-carousel rounded-4" src={photoLocations[1].photos[0].src.large} alt="..." />
+                  </div>
 
-              </div>
-              <div className="carousel-item">
+                  <span className="carousel-caption d-none d-sm-block bg-black bg-opacity-50 py-0 mb-4 rounded-5 fw-bold ">
+                    {photoLocations[1].photos[0].alt}
+                  </span>
 
-                <div className="">
-                  <img className="img-carousel rounded-4" src={photoLocations[2].photos[0].src.large} alt="..." />
                 </div>
+                <div className="carousel-item">
 
-                <span className="carousel-caption d-none d-sm-block bg-black bg-opacity-50 py-0 mb-4 rounded-5 fw-bold ">
-                  {photoLocations[2].photos[0].alt}
-                </span>
+                  <div className="">
+                    <img className="img-carousel rounded-4" src={photoLocations[2].photos[0].src.large} alt="..." />
+                  </div>
 
-              </div>
-              <div className="carousel-item">
+                  <span className="carousel-caption d-none d-sm-block bg-black bg-opacity-50 py-0 mb-4 rounded-5 fw-bold ">
+                    {photoLocations[2].photos[0].alt}
+                  </span>
 
-                <div className="">
-                  <img className="img-carousel  rounded-4" src={photoLocations[3].photos[0].src.large} alt="..." />
                 </div>
+                <div className="carousel-item">
 
-                <span className="carousel-caption d-none d-sm-block bg-black bg-opacity-50 py-0 mb-4 rounded-5 fw-bold ">
-                  {photoLocations[3].photos[0].alt}
-                </span>
+                  <div className="">
+                    <img className="img-carousel  rounded-4" src={photoLocations[3].photos[0].src.large} alt="..." />
+                  </div>
 
-              </div>
-              <div className="carousel-item">
+                  <span className="carousel-caption d-none d-sm-block bg-black bg-opacity-50 py-0 mb-4 rounded-5 fw-bold ">
+                    {photoLocations[3].photos[0].alt}
+                  </span>
 
-                <div className="">
-                  <img className="img-carousel  rounded-4" src={photoLocations[4].photos[0].src.large} alt="..." />
                 </div>
+                <div className="carousel-item">
 
-                <span className="carousel-caption d-none d-sm-block bg-black bg-opacity-50 py-0 mb-4 rounded-5 fw-bold ">
-                  {photoLocations[4].photos[0].alt}
-                </span>
+                  <div className="">
+                    <img className="img-carousel  rounded-4" src={photoLocations[4].photos[0].src.large} alt="..." />
+                  </div>
 
+                  <span className="carousel-caption d-none d-sm-block bg-black bg-opacity-50 py-0 mb-4 rounded-5 fw-bold ">
+                    {photoLocations[4].photos[0].alt}
+                  </span>
+
+                </div>
               </div>
+              <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span className="visually-hidden">Previous</span>
+              </button>
+              <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                <span className="carousel-control-next-icon" aria-hidden="true"></span>
+                <span className="visually-hidden">Next</span>
+              </button>
             </div>
-            <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-              <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span className="visually-hidden">Previous</span>
-            </button>
-            <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-              <span className="carousel-control-next-icon" aria-hidden="true"></span>
-              <span className="visually-hidden">Next</span>
-            </button>
           </div>
         </div>
       }
