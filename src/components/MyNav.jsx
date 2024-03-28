@@ -9,15 +9,17 @@ const MyNav = () => {
 
   const [nameCity, setNameCity] = useState("");
 
+  const [navExpanded, setNavExpanded] = useState(false);
+
   const navigate = useNavigate();
 
   const Coordinates = (e) => {
 
+    e.preventDefault()
+
     if (nameCity === "") {
       alert("Attenzione inserisci prima una città")
     } else {
-
-      e.preventDefault()
 
       dispatch({
         type: "CITY_NAME",
@@ -25,24 +27,27 @@ const MyNav = () => {
       })
 
       navigate("/weatherCountry")
+
+      setNavExpanded(false);
+
     }
   };
 
   return (
-    <Navbar expand="lg" className="bg-body-tertiary bg-nav shadow-lg">
+    <Navbar expand="lg" expanded={navExpanded} className="bg-body-tertiary bg-nav shadow-lg">
       <Container fluid>
         <Navbar.Brand href="#">What's the weather like</Navbar.Brand>
-        <Navbar.Toggle aria-controls="navbarScroll" />
+        <Navbar.Toggle aria-controls="navbarScroll" onClick={() => setNavExpanded(!navExpanded)} />
         <Navbar.Collapse id="navbarScroll">
           <Nav
             className="me-auto my-2 my-lg-0"
             style={{ maxHeight: "100px" }}
             navbarScroll
           >
-            <Link to="/" className="nav-link" id="home-button">
+            <Link to="/" className="nav-link" id="home-button" onClick={() => setNavExpanded(!navExpanded)}>
               Home
             </Link>
-            <Nav.Link href="https://github.com/3roSavo/Weather-app.git">GitHub <i className="bi bi-github"></i></Nav.Link>
+            <Nav.Link target="blank" href="https://github.com/3roSavo/Weather-app.git">GitHub <i className="bi bi-github"></i></Nav.Link>
           </Nav>
           <Form className="d-flex" onSubmit={Coordinates}>
             <Form.Control

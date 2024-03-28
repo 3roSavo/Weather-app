@@ -1,3 +1,5 @@
+import MyNav from "./MyNav";
+import Footer from "./Footer"
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import cursorNav from "../assets/gps_navigation_arrow_geo_icon_148674.png"
@@ -160,7 +162,7 @@ const WeatherCountry = () => {
         getLocalTime()
         setCurrentTime(getLocalTime)
 
-        console.log(new Date())
+        //console.log(new Date())
         //console.log(currentWeatherData.timezone * 1000)
         //console.log(new Date().getTimezoneOffset())
 
@@ -180,15 +182,17 @@ const WeatherCountry = () => {
   }, [currentWeatherData])
 
   return (
-    <>
+    <div className="d-flex flex-column min-vh-100">
+
+      <MyNav />
+
       {loading &&
         <div className="loader my-3"></div>
       }
 
-      {fiveDaysForecastData && (
+      <div className=" flex-grow-1 ">
 
-        <div>
-
+        {fiveDaysForecastData && (
 
           <div className="row mx-auto mx-lg-4 mx-xl-5">
 
@@ -379,7 +383,7 @@ const WeatherCountry = () => {
 
                 <div className="row d-md-flex flex-md-column h-100 justify-content-around m-0">
 
-                  <div className="d-flex flex-column flex-md-row flex-md-wrap col-6 col-sm-4 col-md-12  justify-content-around align-items-center pb-5 pb-md-0 pb-lg-0 align-items-md-center p-0 text-center">
+                  <div className="d-flex flex-column flex-md-row flex-md-wrap col-6 col-sm-4 col-md-12  justify-content-around align-items-center pb-md-0 pb-lg-0 align-items-md-center p-0 text-center">
 
                     <div className="fs-5 fw-bold col-6 col-sm-4  col-md-12 col-lg-4">
                       {fiveDaysForecastData.list[0].dt_txt.slice(10, 16)}
@@ -397,7 +401,7 @@ const WeatherCountry = () => {
 
                   </div>
 
-                  <div className="d-flex flex-column flex-md-row flex-md-wrap col-6 col-sm-4 col-md-12  justify-content-around align-items-center pb-5 pb-md-0 pb-lg-0 align-items-md-center p-0 text-center">
+                  <div className="d-flex flex-column flex-md-row flex-md-wrap col-6 col-sm-4 col-md-12  justify-content-around align-items-center pb-md-0 pb-lg-0 align-items-md-center p-0 text-center">
 
                     <div className="fs-5 fw-bold col-6 col-sm-4  col-md-12 col-lg-4">
                       {fiveDaysForecastData.list[1].dt_txt.slice(10, 16)}
@@ -415,7 +419,9 @@ const WeatherCountry = () => {
 
                   </div>
 
-                  <div className="d-flex flex-column flex-md-row flex-md-wrap col-6 col-sm-4 col-md-12  justify-content-around align-items-center pb-5 pb-md-0 pb-lg-0 align-items-md-center p-0 text-center">
+                  <div className=" d-sm-none border border-black my-3 w-75 border-1 col-12"></div>
+
+                  <div className="d-flex flex-column flex-md-row flex-md-wrap col-6 col-sm-4 col-md-12  justify-content-around align-items-center pb-md-0 pb-lg-0 align-items-md-center p-0 text-center">
 
                     <div className="fs-5 fw-bold col-6 col-sm-4  col-md-12 col-lg-4">
                       {fiveDaysForecastData.list[2].dt_txt.slice(10, 16)}
@@ -433,7 +439,9 @@ const WeatherCountry = () => {
 
                   </div>
 
-                  <div className="d-flex flex-column flex-md-row flex-md-wrap col-6 col-sm-4 col-md-12  justify-content-around align-items-center pb-5 pb-sm-2 pb-md-0 pb-lg-0 align-items-md-center p-0 text-center">
+                  <div className=" d-none d-sm-block d-md-none border border-black my-3 w-75 border-1 col-12"></div>
+
+                  <div className="d-flex flex-column flex-md-row flex-md-wrap col-6 col-sm-4 col-md-12  justify-content-around align-items-center pb-sm-2 pb-md-0 pb-lg-0 align-items-md-center p-0 text-center">
 
                     <div className="fs-5 fw-bold col-6 col-sm-4  col-md-12 col-lg-4">
                       {fiveDaysForecastData.list[3].dt_txt.slice(10, 16)}
@@ -450,6 +458,8 @@ const WeatherCountry = () => {
                     </div>
 
                   </div>
+
+                  <div className=" d-sm-none border border-black my-3 w-75 border-1 col-12"></div>
 
                   <div className="d-flex flex-column flex-md-row flex-md-wrap col-6 col-sm-4 col-md-12  justify-content-around align-items-center pb-2 pb-md-0 pb-lg-0 align-items-md-center p-0 text-center">
 
@@ -495,10 +505,13 @@ const WeatherCountry = () => {
 
           </div>
 
-        </div>
+        )}
 
-      )}
-    </>
+      </div>
+
+      <Footer />
+
+    </div>
   );
 };
 export default WeatherCountry;

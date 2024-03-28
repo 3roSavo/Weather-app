@@ -232,14 +232,14 @@ const Home = () => {
 
 
               {photoLocations.photos.length !== 0 &&
-                <h4 className="text-center mb-3 bg-dark bg-opacity-50 text-light rounded-5 py-1">
+                <h5 className="text-center mb-3 bg-dark bg-opacity-50 text-light rounded-4 py-1">
                   Foto {userWeather.name}
-                </h4>
+                </h5>
               }
               {photoLocations.photos.length === 0 &&
-                <h4 className="text-center mb-3 bg-dark bg-opacity-50 text-light rounded-5 py-1">
-                  Non sono disponibili foto per la tua zona :(
-                </h4>
+                <h5 className="text-center mb-3 bg-dark bg-opacity-50 text-light rounded-4 py-1">
+                  Non sono disponibili foto per la tua zona 😢
+                </h5>
               }
 
               <div id="carouselExampleCaptions" className="carousel slide carousel-settings rounded-4 px-0" data-bs-ride="carousel" data-bs-interval="5000">
