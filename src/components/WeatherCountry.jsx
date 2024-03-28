@@ -39,7 +39,7 @@ const WeatherCountry = () => {
           setLoading(false)
           console.log(obj);
           setCurrentWeatherData(obj);
-        }, 1000);
+        }, 10000);
       })
       .catch((err) => {
         setLoading(false)
@@ -68,7 +68,7 @@ const WeatherCountry = () => {
           console.log(obj);
           setFiveDaysForecastData(obj);
           setLoading(false)
-        }, 1000);
+        }, 10000);
       })
       .catch((err) => {
         console.log(err);
@@ -377,7 +377,7 @@ const WeatherCountry = () => {
 
             <aside className="col-12 col-md-4 p-3 ps-md-1">
 
-              <div className="card-aside h-100 d-flex flex-column  rounded-4 p-2">
+              <div className="card-aside h-100 d-flex flex-column  rounded-4 p-3">
 
                 <h5 className="text-center fw-bold mb-md-0">Previsioni orarie</h5>
 
