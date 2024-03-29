@@ -11,7 +11,8 @@ const Home = () => {
   const [userPosition, setUserPosition] = useState(null)
   const [userWeather, setUserWeather] = useState(null)
 
-
+  const [loadingRandomWeather, setLoadingRandomWeather] = useState(false)
+  const [loadingLocalWeather, setLoadingLocalWeather] = useState(false)
 
   const showPosition = position => {
 
@@ -73,6 +74,10 @@ const Home = () => {
   };
 
   const getRandomWeatherForecasts = async () => {
+
+    setWeatherForecast(null)
+    setLoadingRandomWeather(true)
+
     try {
 
       const requests = countries.map(location => {
@@ -88,16 +93,19 @@ const Home = () => {
       })
 
       const weatherData = await Promise.all(requests)
-      setWeatherForecast(weatherData)
-      console.log(weatherData)
+
+      setTimeout(() => {
+        setLoadingRandomWeather(false)
+        setWeatherForecast(weatherData)
+        console.log(weatherData)
+      }, 1500);
 
     } catch (error) {
+      setLoadingRandomWeather(false)
       alert(error)
       console.log(error)
     }
   };
-
-
 
   useEffect(() => {
 
@@ -146,13 +154,19 @@ const Home = () => {
 
         <div className="row mx-0 justify-content-center  col-12 col-lg-6 col-xxl-7 px-0 pt-4 pt-sm-5 pt-lg-0">
 
-          {weatherForecast &&
+          <div className="main-box mb-4">
 
-            <div className="main-box">
+            {loadingRandomWeather &&
+              <div className="d-flex justify-content-center">
+                <div className="loader"></div>
+              </div>
+            }
 
-              <div className="row justify-content-center px-0 mx-0 overflow-y-hidden weather-box">
+            <div className="row justify-content-center px-0 mx-0 overflow-y-hidden weather-box">
 
-                {weatherForecast.map(element => {
+              {weatherForecast &&
+
+                weatherForecast.map(element => {
 
                   return <div className="col-6 col-sm-4 col-md-3 col-lg-4 col-xxl-3 p-2" key={element.id}>
 
@@ -168,11 +182,10 @@ const Home = () => {
                     </div>
 
                   </div>
-                })}
-
-              </div>
+                })
+              }
             </div>
-          }
+          </div>
 
         </div>
         {photoLocations &&
