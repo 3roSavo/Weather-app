@@ -4,6 +4,9 @@ import loadingGif from "../assets/gifLoading.gif"
 
 const Home = () => {
 
+  const pexelsAuth = process.env.REACT_APP_PEXELS_AUTH
+  const openweathermapAppId = process.env.REACT_APP_OPEN_WEATHER_MAP_APP_ID
+
   const [photoLocations, setPhotoLocations] = useState(null)
 
   const countries = ["New York", "Parigi", "Melbourne", "Casablanca", "Oslo", "Tokyo", "Riga", "Londra", "Madrid", "Reykjavik", "Berlino", "Nairobi", "Bucarest", "Dublino", "Seoul", "Algeri", "Bangkok", "Ankara"]
@@ -48,7 +51,7 @@ const Home = () => {
 
     setLoadingLocalWeather(true)
 
-    fetch("https://api.openweathermap.org/data/2.5/weather?lat=" + userPosition.latitude + "&lon=" + userPosition.longitude + "&units=metric&lang=it&appid=a793bd006b5b59f0fb2f211b3e3cd738")
+    fetch("https://api.openweathermap.org/data/2.5/weather?lat=" + userPosition.latitude + "&lon=" + userPosition.longitude + `&units=metric&lang=it&appid=${openweathermapAppId}`)
       .then(response => {
         if (response.ok) {
           return response.json()
@@ -77,7 +80,7 @@ const Home = () => {
     try {
       fetch("https://api.pexels.com/v1/search?query=" + userWeather.name + "&per_page=10", {
         headers: {
-          "Authorization": "ifbuQCuGTrbmEOof10n9yXGfVaWjUFcpLwodmFpq5GtLg0BZxQJcDjHy"
+          "Authorization": `${pexelsAuth}`
         }
       })
         .then(response => {

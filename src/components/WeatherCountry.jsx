@@ -5,11 +5,8 @@ import { useNavigate } from "react-router-dom";
 
 const WeatherCountry = () => {
 
-  const pexelsAuth = process.env.PEXELS_AUTH
-  const openweathermapAppId = process.env.OPEN_WEATHER_MAP_APP_ID
-  //console.log(pexelsAuth)
-  //console.log(openweathermapAppId)
-
+  const pexelsAuth = process.env.REACT_APP_PEXELS_AUTH
+  const openweathermapAppId = process.env.REACT_APP_OPEN_WEATHER_MAP_APP_ID
 
   const [currentWeatherData, setCurrentWeatherData] = useState(null); // Attuali
   const [fiveDaysForecastData, setFiveDaysForecastData] = useState(null) // lista previsioni ogni 3 ore per 5 gg
@@ -29,7 +26,7 @@ const WeatherCountry = () => {
     setLoading(true)
 
     fetch(
-      "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&units=metric&lang=it&appid=a793bd006b5b59f0fb2f211b3e3cd738"
+      "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + `&units=metric&lang=it&appid=${openweathermapAppId}`
     )
       .then((response) => {
         if (response.ok) {
@@ -59,7 +56,7 @@ const WeatherCountry = () => {
     setLoading(true)
 
     fetch(
-      "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&units=metric&appid=a793bd006b5b59f0fb2f211b3e3cd738"
+      "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + `&units=metric&appid=${openweathermapAppId}`
     )
       .then((response) => {
         if (response.ok) {
@@ -123,7 +120,7 @@ const WeatherCountry = () => {
 
     fetch("https://api.pexels.com/v1/search?query=" + currentWeatherData.name + "&per_page=1", {
       headers: {
-        "authorization": "ifbuQCuGTrbmEOof10n9yXGfVaWjUFcpLwodmFpq5GtLg0BZxQJcDjHy"
+        "authorization": pexelsAuth
       }
     })
       .then((response) => {
