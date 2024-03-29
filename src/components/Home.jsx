@@ -24,6 +24,7 @@ const Home = () => {
       setLoadingLocalWeather(true)
       navigator.geolocation.getCurrentPosition((position) => { // qui controlliamo se l'utente ha abilitato la condivisione della posizione (primo parametro logica per il si, secondo per il no)
 
+        setGeolocationPermissionDenied(false)
         console.log(position)
 
         setUserPosition({
@@ -219,9 +220,9 @@ const Home = () => {
             <div className="text-center">
               <div className="px-2 py-1 mx-auto col-12 col-md-11 col-lg-10 bg-black bg-opacity-50 text-white text-center rounded-4">
                 Abilita la condivisione della posizione per vedere il meteo della tua zona!<br />
-                Se il tuo browser non la attiva automaticamente, prova da qui!
+                Una volta attivata, premi il pulsante!
               </div>
-              <div className="btn btn-success mt-2" onClick={() => { getCoordinates() }}>Abilita condivisione</div>
+              <div className="btn btn-success mt-2" onClick={() => { getCoordinates() }}>Cerca il mio meteo!</div>
             </div>
           }
 
