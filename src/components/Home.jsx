@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import photoPlaceholder from "../assets/pexels-johannes-plenio-1118873.jpg"
+import loadingGif from "../assets/gifLoading.gif"
 
 const Home = () => {
 
@@ -26,7 +27,9 @@ const Home = () => {
 
   }
 
-  const getlocalWeather = () => {
+  const getUserWeather = () => {
+
+    setLoadingLocalWeather(true)
 
     fetch("https://api.openweathermap.org/data/2.5/weather?lat=" + userPosition.latitude + "&lon=" + userPosition.longitude + "&units=metric&lang=it&appid=a793bd006b5b59f0fb2f211b3e3cd738")
       .then(response => {
@@ -38,16 +41,22 @@ const Home = () => {
         }
       })
       .then(data => {
-        console.log(data)
-        setUserWeather(data)
+        setTimeout(() => {
+          console.log(data)
+          setUserWeather(data)
+        }, 1500);
       })
       .catch(error => {
+        setLoadingLocalWeather(false)
         console.log(error)
         alert(error)
       })
   }
 
   const getPhotoLocations = async () => {
+
+    setLoadingLocalWeather(true)
+
     try {
       fetch("https://api.pexels.com/v1/search?query=" + userWeather.name + "&per_page=10", {
         headers: {
@@ -63,13 +72,17 @@ const Home = () => {
           return response.json();
         })
         .then(data => {
-          setPhotoLocations(data);
-          console.log("Dati delle foto ottenuti:", data);
+          setTimeout(() => {
+            setPhotoLocations(data);
+            console.log("Dati delle foto ottenuti:", data);
+            setLoadingLocalWeather(false)
+          }, 1500);
         })
 
     } catch (error) {
       console.error("Si è verificato un errore:", error);
       alert(error);
+      setLoadingLocalWeather(false)
     }
   };
 
@@ -109,6 +122,7 @@ const Home = () => {
 
   useEffect(() => {
 
+    setLoadingLocalWeather(true)
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(showPosition);
     } else {
@@ -121,7 +135,7 @@ const Home = () => {
   useEffect(() => {
 
     if (userPosition) {
-      getlocalWeather()
+      getUserWeather()
     }
   }, [userPosition])
 
@@ -188,128 +202,144 @@ const Home = () => {
           </div>
 
         </div>
-        {photoLocations &&
 
-          <div className="mt-4">
+        <div className="mt-4">
 
-            <div className="text-center"><span className="fs-3 bg-dark text-light bg-opacity-50 px-3 rounded-5 py-1">Meteo locale <i className="bi bi-cursor-fill cursor-icon d-inline-block "></i></span></div>
+          <div className="text-center"><span className="fs-3 bg-dark text-white bg-opacity-50 px-3 rounded-5 py-1">Meteo locale <i className="bi bi-cursor-fill cursor-icon d-inline-block "></i></span></div>
 
-            <div className="row justify-content-center align-items-center px-0 pt-3 pb-5 mx-0">
+          <div className="row justify-content-center align-items-center px-0 pt-3 pb-5 mx-0">
 
-              <div className="col-10 col-sm-9 col-md-6 col-lg-6 col-xl-5 col-xxl-4 px-0 px-md-2 py-3 py-md-0 align-self-lg-stretch">
+            {loadingLocalWeather &&
+              <div className="text-center">
+                <div className="fs-4 text-white bg-dark bg-opacity-50 rounded-4">Stiamo cercando la tua posizione!</div>
+                <img style={{ width: "180px" }} className=" rounded-circle mt-3" src={loadingGif} alt="" />
+              </div>
+            }
 
-                {userWeather &&
-                  <div className="local-position-weather-card rounded-4 p-3 h-100">
+            {photoLocations &&
 
-                    <h5 className="text-center fw-bold">{userWeather.name} ({userWeather.sys.country})</h5>
+              <>
 
-                    <div className="row mx-0 align-items-center justify-content-center">
-                      <img className="local-weather-icon px-3" src={`http://openweathermap.org/img/wn/${userWeather.weather[0].icon}@4x.png`} alt="" />
-                      <div className="col-4 px-0 ps-sm-3 fw-bold fs-5">{userWeather.main.temp}°C</div>
-                      <div className="col-12 fw-bold fs-4 text-center">{userWeather.weather[0].description}</div>
+                <div className="col-10 col-sm-9 col-md-6 col-lg-6 col-xl-5 col-xxl-4 px-0 px-md-2 py-3 py-md-0 align-self-lg-stretch">
 
-                      <div className="col-12 row mx-0 px-0 mt-2 mt-lg-3">
+                  {userWeather &&
+                    <div className="local-position-weather-card rounded-4 p-3 h-100">
 
-                        <div className="col-6 col-sm-3 col-md-6 col-lg-3 text-center px-0">
-                          <i className="bi bi-water fs-2"></i>
-                          <div className="fw-bold">{userWeather.main.humidity}%</div>
-                          <div>Umidità</div>
-                        </div>
+                      <h5 className="text-center fw-bold">{userWeather.name} ({userWeather.sys.country})</h5>
 
-                        <div className="col-6 col-sm-3 col-md-6 col-lg-3 text-center px-0">
-                          <i className="bi bi-wind fs-2"></i>
-                          <div className="fw-bold">{userWeather.wind.speed}m/s</div>
-                          <div>Vel. vento</div>
-                        </div>
+                      <div className="row mx-0 align-items-center justify-content-center">
+                        <img className="local-weather-icon px-3" src={`http://openweathermap.org/img/wn/${userWeather.weather[0].icon}@4x.png`} alt="" />
+                        <div className="col-4 px-0 ps-sm-3 fw-bold fs-5">{userWeather.main.temp}°C</div>
+                        <div className="col-12 fw-bold fs-4 text-center">{userWeather.weather[0].description}</div>
 
-                        <div className="col-6 col-sm-3 col-md-6 col-lg-3 text-center px-0 mt-3 mt-sm-0">
-                          <i className="bi bi-thermometer-snow fs-2"></i>
-                          <div className="fw-bold">{userWeather.main.temp_min}°C</div>
-                          <div>Min °C</div>
-                        </div>
+                        <div className="col-12 row mx-0 px-0 mt-2 mt-lg-3">
 
-                        <div className="col-6 col-sm-3 col-md-6 col-lg-3 text-center px-0 mt-3 mt-sm-0">
-                          <i className="bi bi-thermometer-sun fs-2"></i>
-                          <div className="fw-bold">{userWeather.main.temp_max}°C</div>
-                          <div>Max °C</div>
+                          <div className="col-6 col-sm-3 col-md-6 col-lg-3 text-center px-0">
+                            <i className="bi bi-water fs-2"></i>
+                            <div className="fw-bold">{userWeather.main.humidity}%</div>
+                            <div>Umidità</div>
+                          </div>
+
+                          <div className="col-6 col-sm-3 col-md-6 col-lg-3 text-center px-0">
+                            <i className="bi bi-wind fs-2"></i>
+                            <div className="fw-bold">{userWeather.wind.speed}m/s</div>
+                            <div>Vel. vento</div>
+                          </div>
+
+                          <div className="col-6 col-sm-3 col-md-6 col-lg-3 text-center px-0 mt-3 mt-sm-0">
+                            <i className="bi bi-thermometer-snow fs-2"></i>
+                            <div className="fw-bold">{userWeather.main.temp_min}°C</div>
+                            <div>Min °C</div>
+                          </div>
+
+                          <div className="col-6 col-sm-3 col-md-6 col-lg-3 text-center px-0 mt-3 mt-sm-0">
+                            <i className="bi bi-thermometer-sun fs-2"></i>
+                            <div className="fw-bold">{userWeather.main.temp_max}°C</div>
+                            <div>Max °C</div>
+                          </div>
+
                         </div>
 
                       </div>
 
                     </div>
+                  }
 
-                  </div>
-                }
+                </div>
 
-              </div>
-
-              <div className="col-12 col-md-6 col-lg-6 col-xl-5 col-xxl-4 px-2">
+                <div className="col-12 col-md-6 col-lg-6 col-xl-5 col-xxl-4 px-2">
 
 
 
-                {photoLocations.photos.length !== 0 &&
-                  <h5 className="text-center d mb-3 bg-dark bg-opacity-50 text-light rounded-4 py-1">
-                    Foto {userWeather.name}
-                  </h5>
-                }
-                {photoLocations.photos.length === 0 &&
-                  <h5 className="text-center mb-3 bg-dark bg-opacity-50 text-light rounded-4 py-1">
-                    Non sono disponibili foto per la tua zona 😢
-                  </h5>
-                }
+                  {photoLocations.photos.length !== 0 &&
+                    <h5 className="text-center d mb-3 bg-dark bg-opacity-50 text-white rounded-4 py-1">
+                      Foto {userWeather.name}
+                    </h5>
+                  }
+                  {photoLocations.photos.length === 0 &&
+                    <h5 className="text-center mb-3 bg-dark bg-opacity-50 text-white rounded-4 py-1">
+                      Non sono disponibili foto per la tua zona 😢
+                    </h5>
+                  }
 
-                <div id="carouselExampleCaptions" className="carousel slide carousel-settings rounded-4 px-0" data-bs-ride="carousel" data-bs-interval="5000">
+                  <div id="carouselExampleCaptions" className="carousel slide carousel-settings rounded-4 px-0" data-bs-ride="carousel" data-bs-interval="5000">
 
-                  <div className="carousel-inner rounded-4">
+                    <div className="carousel-inner rounded-4">
 
-                    {photoLocations.photos.length !== 0 &&
-                      photoLocations.photos.map((photo, i) => {
-                        return <div className={i === 0 ? "carousel-item active" : "carousel-item"} key={i}>
+                      {photoLocations.photos.length !== 0 &&
+                        photoLocations.photos.map((photo, i) => {
+                          return <div className={i === 0 ? "carousel-item active" : "carousel-item"} key={i}>
+
+                            <div>
+                              <img className="img-carousel rounded-4" src={photo.src.original} alt="..." />
+                            </div>
+
+                            <span className="carousel-caption d-none d-sm-block bg-black bg-opacity-50 p-1 mb-4 rounded-4 fw-bold ">
+                              {photo.alt}
+                            </span>
+
+                          </div>
+                        })
+                      }
+
+                      {photoLocations.photos.length === 0 &&
+
+                        <div className="carousel-item active">
 
                           <div>
-                            <img className="img-carousel rounded-4" src={photo.src.original} alt="..." />
+                            <img className="img-carousel rounded-4" src={photoPlaceholder} alt="..." />
                           </div>
 
-                          <span className="carousel-caption d-none d-sm-block bg-black bg-opacity-50 p-1 mb-4 rounded-4 fw-bold ">
-                            {photo.alt}
+                          <span className="carousel-caption  bg-black bg-opacity-50 p-1 mb-4 rounded-4">
+                            Qui, quando possibile, ci sarà un'anteprima del posto 🏞️
                           </span>
 
                         </div>
-                      })
-                    }
 
-                    {photoLocations.photos.length === 0 &&
+                      }
 
-                      <div className="carousel-item active">
+                    </div>
 
-                        <div>
-                          <img className="img-carousel rounded-4" src={photoPlaceholder} alt="..." />
-                        </div>
-
-                        <span className="carousel-caption  bg-black bg-opacity-50 p-1 mb-4 rounded-4">
-                          Qui, quando possibile, ci sarà un'anteprima del posto 🏞️
-                        </span>
-
-                      </div>
-
-                    }
-
+                    <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                      <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span className="visually-hidden">Previous</span>
+                    </button>
+                    <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                      <span className="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span className="visually-hidden">Next</span>
+                    </button>
                   </div>
 
-                  <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-                    <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span className="visually-hidden">Previous</span>
-                  </button>
-                  <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-                    <span className="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span className="visually-hidden">Next</span>
-                  </button>
                 </div>
 
-              </div>
-            </div>
+              </>
+
+            }
+
           </div>
-        }
+
+
+        </div>
 
       </div>
 
