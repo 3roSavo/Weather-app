@@ -9,21 +9,23 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 function App() {
 
   return (
-    <BrowserRouter>
+    <div className="d-flex flex-column min-vh-100">
+      <BrowserRouter>
 
-      <MyNav />
+        <MyNav />
 
-      <Routes>
+        <Routes>
 
-        <Route element={<Home />} path="/"></Route>
+          <Route element={<Home />} path="/"></Route>
 
-        <Route element={<WeatherCountry />} path="/weatherCountry"></Route>
+          <Route element={<WeatherCountry />} path="/weatherCountry"></Route>
 
-      </Routes>
+        </Routes>
 
-      <Footer />
+        <Footer />
 
-    </BrowserRouter>
+      </BrowserRouter>
+    </div>
   );
 }
 
