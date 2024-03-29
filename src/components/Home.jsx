@@ -203,7 +203,7 @@ const Home = () => {
                       <h6 className="fw-bold">{element.name}</h6>
 
                       <div>
-                        <img className="five-days-icon" src={`http://openweathermap.org/img/wn/${element.weather[0].icon}@4x.png`} alt="" />
+                        <img className="five-days-icon" src={`https://openweathermap.org/img/wn/${element.weather[0].icon}@4x.png`} alt="" />
                       </div>
 
                       <div className="fw-bold">{element.main.temp}°C</div>
@@ -257,7 +257,7 @@ const Home = () => {
                           <h5 className="text-center fw-bold">{userWeather.name} ({userWeather.sys.country})</h5>
 
                           <div className="row mx-0 align-items-center justify-content-center">
-                            <img className="local-weather-icon px-3" src={`http://openweathermap.org/img/wn/${userWeather.weather[0].icon}@4x.png`} alt="" />
+                            <img className="local-weather-icon px-3" src={`https://openweathermap.org/img/wn/${userWeather.weather[0].icon}@4x.png`} alt="" />
                             <div className="col-4 px-0 ps-sm-3 fw-bold fs-5">{userWeather.main.temp}°C</div>
                             <div className="col-12 fw-bold fs-4 text-center">{userWeather.weather[0].description}</div>
 

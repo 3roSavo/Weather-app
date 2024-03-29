@@ -278,7 +278,7 @@ const WeatherCountry = () => {
                     <div className="col-6 col-lg-4">
                       <div className="d-flex flex-column align-items-center justify-content-center mx-0">
 
-                        <img className="weather-img col-12" src={`http://openweathermap.org/img/wn/${currentWeatherData.weather[0].icon}@4x.png`} alt="weather-icon"></img>
+                        <img className="weather-img col-12" src={`https://openweathermap.org/img/wn/${currentWeatherData.weather[0].icon}@4x.png`} alt="weather-icon"></img>
 
                         <p className="fs-3 fw-bold text-center title-spacing m-0 px-0">{currentWeatherData.weather[0].description}</p>
 
@@ -326,7 +326,7 @@ const WeatherCountry = () => {
 
                     <div className="fw-bold col-4 col-sm-12 text-center">{transformTimeStamp(fiveDaysForecastData.list[7].dt)}</div>
 
-                    <div className="col-4 col-sm-12 text-center"><img className="five-days-icon" src={`http://openweathermap.org/img/wn/${fiveDaysForecastData.list[7].weather[0].icon}@4x.png`} alt="weather-icon" /></div>
+                    <div className="col-4 col-sm-12 text-center"><img className="five-days-icon" src={`https://openweathermap.org/img/wn/${fiveDaysForecastData.list[7].weather[0].icon}@4x.png`} alt="weather-icon" /></div>
 
                     <div className="fw-bold text-center col-4 col-sm-12">{fiveDaysForecastData.list[7].main.temp}°C</div>
 
@@ -336,7 +336,7 @@ const WeatherCountry = () => {
 
                     <div className="fw-bold col-4 col-sm-12 text-center">{transformTimeStamp(fiveDaysForecastData.list[15].dt)}</div>
 
-                    <div className="col-4 col-sm-12 text-center"><img className="five-days-icon" src={`http://openweathermap.org/img/wn/${fiveDaysForecastData.list[15].weather[0].icon}@4x.png`} alt="weather-icon" /></div>
+                    <div className="col-4 col-sm-12 text-center"><img className="five-days-icon" src={`https://openweathermap.org/img/wn/${fiveDaysForecastData.list[15].weather[0].icon}@4x.png`} alt="weather-icon" /></div>
 
                     <div className="fw-bold text-center col-4 col-sm-12">{fiveDaysForecastData.list[15].main.temp}°C</div>
 
@@ -346,7 +346,7 @@ const WeatherCountry = () => {
 
                     <div className="fw-bold col-4 col-sm-12 text-center">{transformTimeStamp(fiveDaysForecastData.list[23].dt)}</div>
 
-                    <div className="col-4 col-sm-12 text-center"><img className="five-days-icon" src={`http://openweathermap.org/img/wn/${fiveDaysForecastData.list[23].weather[0].icon}@4x.png`} alt="weather-icon" /></div>
+                    <div className="col-4 col-sm-12 text-center"><img className="five-days-icon" src={`https://openweathermap.org/img/wn/${fiveDaysForecastData.list[23].weather[0].icon}@4x.png`} alt="weather-icon" /></div>
 
                     <div className="fw-bold text-center col-4 col-sm-12">{fiveDaysForecastData.list[23].main.temp}°C</div>
 
@@ -356,7 +356,7 @@ const WeatherCountry = () => {
 
                     <div className="fw-bold col-4 col-sm-12 text-center">{transformTimeStamp(fiveDaysForecastData.list[31].dt)}</div>
 
-                    <div className="col-4 col-sm-12 text-center"><img className="five-days-icon" src={`http://openweathermap.org/img/wn/${fiveDaysForecastData.list[31].weather[0].icon}@4x.png`} alt="weather-icon" /></div>
+                    <div className="col-4 col-sm-12 text-center"><img className="five-days-icon" src={`https://openweathermap.org/img/wn/${fiveDaysForecastData.list[31].weather[0].icon}@4x.png`} alt="weather-icon" /></div>
 
                     <div className="fw-bold text-center col-4 col-sm-12">{fiveDaysForecastData.list[31].main.temp}°C</div>
 
@@ -366,7 +366,7 @@ const WeatherCountry = () => {
 
                     <div className="fw-bold col-4 col-sm-12 text-center">{transformTimeStamp(fiveDaysForecastData.list[39].dt)}</div>
 
-                    <div className="col-4 col-sm-12 text-center"><img className="five-days-icon" src={`http://openweathermap.org/img/wn/${fiveDaysForecastData.list[39].weather[0].icon}@4x.png`} alt="weather-icon" /></div>
+                    <div className="col-4 col-sm-12 text-center"><img className="five-days-icon" src={`https://openweathermap.org/img/wn/${fiveDaysForecastData.list[39].weather[0].icon}@4x.png`} alt="weather-icon" /></div>
 
                     <div className="fw-bold text-center col-4 col-sm-12">{fiveDaysForecastData.list[39].main.temp}°C</div>
 
@@ -392,7 +392,7 @@ const WeatherCountry = () => {
                     </div>
 
                     <div className="col-6 col-sm-4 col-md-6 col-lg-4">
-                      <img className="hourly-icon" src={`http://openweathermap.org/img/wn/${fiveDaysForecastData.list[0].weather[0].icon}@4x.png`} alt="hourly-icon"></img>
+                      <img className="hourly-icon" src={`https://openweathermap.org/img/wn/${fiveDaysForecastData.list[0].weather[0].icon}@4x.png`} alt="hourly-icon"></img>
                       <div className=" fw-bold">{fiveDaysForecastData.list[0].main.temp.toString().slice(0, 4)}°C</div>
                     </div>
 
@@ -410,7 +410,7 @@ const WeatherCountry = () => {
                     </div>
 
                     <div className="col-6 col-sm-4 col-md-6 col-lg-4">
-                      <img className="hourly-icon" src={`http://openweathermap.org/img/wn/${fiveDaysForecastData.list[1].weather[0].icon}@4x.png`} alt="hourly-icon"></img>
+                      <img className="hourly-icon" src={`https://openweathermap.org/img/wn/${fiveDaysForecastData.list[1].weather[0].icon}@4x.png`} alt="hourly-icon"></img>
                       <div className=" fw-bold">{fiveDaysForecastData.list[1].main.temp.toString().slice(0, 4)}°C</div>
                     </div>
 
@@ -430,7 +430,7 @@ const WeatherCountry = () => {
                     </div>
 
                     <div className="col-6 col-sm-4 col-md-6 col-lg-4">
-                      <img className="hourly-icon" src={`http://openweathermap.org/img/wn/${fiveDaysForecastData.list[2].weather[0].icon}@4x.png`} alt="hourly-icon"></img>
+                      <img className="hourly-icon" src={`https://openweathermap.org/img/wn/${fiveDaysForecastData.list[2].weather[0].icon}@4x.png`} alt="hourly-icon"></img>
                       <div className=" fw-bold">{fiveDaysForecastData.list[2].main.temp.toString().slice(0, 4)}°C</div>
                     </div>
 
@@ -450,7 +450,7 @@ const WeatherCountry = () => {
                     </div>
 
                     <div className="col-6 col-sm-4 col-md-6 col-lg-4">
-                      <img className="hourly-icon" src={`http://openweathermap.org/img/wn/${fiveDaysForecastData.list[3].weather[0].icon}@4x.png`} alt="hourly-icon"></img>
+                      <img className="hourly-icon" src={`https://openweathermap.org/img/wn/${fiveDaysForecastData.list[3].weather[0].icon}@4x.png`} alt="hourly-icon"></img>
                       <div className=" fw-bold">{fiveDaysForecastData.list[3].main.temp.toString().slice(0, 4)}°C</div>
                     </div>
 
@@ -470,7 +470,7 @@ const WeatherCountry = () => {
                     </div>
 
                     <div className="col-6 col-sm-4 col-md-6 col-lg-4">
-                      <img className="hourly-icon" src={`http://openweathermap.org/img/wn/${fiveDaysForecastData.list[4].weather[0].icon}@4x.png`} alt="hourly-icon"></img>
+                      <img className="hourly-icon" src={`https://openweathermap.org/img/wn/${fiveDaysForecastData.list[4].weather[0].icon}@4x.png`} alt="hourly-icon"></img>
                       <div className=" fw-bold">{fiveDaysForecastData.list[4].main.temp.toString().slice(0, 4)}°C</div>
                     </div>
 
@@ -488,7 +488,7 @@ const WeatherCountry = () => {
                     </div>
 
                     <div className="col-6 col-sm-4 col-md-6 col-lg-4">
-                      <img className="hourly-icon" src={`http://openweathermap.org/img/wn/${fiveDaysForecastData.list[5].weather[0].icon}@4x.png`} alt="hourly-icon"></img>
+                      <img className="hourly-icon" src={`https://openweathermap.org/img/wn/${fiveDaysForecastData.list[5].weather[0].icon}@4x.png`} alt="hourly-icon"></img>
                       <div className=" fw-bold">{fiveDaysForecastData.list[5].main.temp.toString().slice(0, 4)}°C</div>
                     </div>
 
