@@ -205,7 +205,7 @@ const WeatherCountry = () => {
                   <div className="card-text text-center hour-time">
 
                     {!currentTime &&
-                      <div className="spinner-border" role="status">
+                      <div className="spinner-border text-light" role="status">
                         <span className="visually-hidden">Loading...</span>
                       </div>
                     }
