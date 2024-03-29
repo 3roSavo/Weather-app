@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import photoPlaceholder from "../assets/pexels-johannes-plenio-1118873.jpg"
 
 const Home = () => {
 
@@ -127,10 +128,10 @@ const Home = () => {
 
     <div className="flex-grow-1">
 
-      <div className="imgHome row mx-0 px-3 justify-content-center ">
+      <div className="imgHome row mx-0 px-3 justify-content-center pt-5">
 
-        <div className="col-12 col-lg-6 col-xxl-5">
-          <h1 className="headings pt-5">Il tempo, in tempo reale!</h1>
+        <div className="col-12 col-lg-6 col-xxl-5 ps-3 pe-0">
+          <h1 className="headings">Il tempo, in tempo reale!</h1>
           <div className="roller">
             <div id="rolltext" className="headings fs-3">
               <div id="drop-down">Quando vuoi</div>
@@ -143,13 +144,13 @@ const Home = () => {
         </div>
 
 
-        <div className="mt-4 row mx-0 justify-content-center  col-12 col-lg-6 col-xxl-7 px-0">
+        <div className="row mx-0 justify-content-center  col-12 col-lg-6 col-xxl-7 px-0 pt-4 pt-sm-5 pt-lg-0">
 
           {weatherForecast &&
 
             <div className="main-box">
 
-              <div className="row justify-content-center px-0 pb-3 mx-0 overflow-y-hidden weather-box">
+              <div className="row justify-content-center px-0 mx-0 overflow-y-hidden weather-box">
 
                 {weatherForecast.map(element => {
 
@@ -176,9 +177,9 @@ const Home = () => {
         </div>
         {photoLocations &&
 
-          <div className="mt-2">
+          <div className="mt-4">
 
-            <div className="text-center"><span className="fs-2 bg-dark text-light bg-opacity-50 px-3 rounded-5 py-1">Meteo locale <i className="bi bi-cursor-fill cursor-icon d-inline-block "></i></span></div>
+            <div className="text-center"><span className="fs-3 bg-dark text-light bg-opacity-50 px-3 rounded-5 py-1">Meteo locale <i className="bi bi-cursor-fill cursor-icon d-inline-block "></i></span></div>
 
             <div className="row justify-content-center align-items-center px-0 pt-3 pb-5 mx-0">
 
@@ -234,7 +235,7 @@ const Home = () => {
 
 
                 {photoLocations.photos.length !== 0 &&
-                  <h5 className="text-center mb-3 bg-dark bg-opacity-50 text-light rounded-4 py-1">
+                  <h5 className="text-center d mb-3 bg-dark bg-opacity-50 text-light rounded-4 py-1">
                     Foto {userWeather.name}
                   </h5>
                 }
@@ -245,13 +246,7 @@ const Home = () => {
                 }
 
                 <div id="carouselExampleCaptions" className="carousel slide carousel-settings rounded-4 px-0" data-bs-ride="carousel" data-bs-interval="5000">
-                  {/*<div className="carousel-indicators">
-                  <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
-                  <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                  <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                  <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"></button>
-                  <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="4" aria-label="Slide 5"></button>
-                </div>*/}
+
                   <div className="carousel-inner rounded-4">
 
                     {photoLocations.photos.length !== 0 &&
@@ -270,7 +265,24 @@ const Home = () => {
                       })
                     }
 
+                    {photoLocations.photos.length === 0 &&
+
+                      <div className="carousel-item active">
+
+                        <div>
+                          <img className="img-carousel rounded-4" src={photoPlaceholder} alt="..." />
+                        </div>
+
+                        <span className="carousel-caption  bg-black bg-opacity-50 p-1 mb-4 rounded-4">
+                          Qui, quando possibile, ci sarà un'anteprima del posto 🏞️
+                        </span>
+
+                      </div>
+
+                    }
+
                   </div>
+
                   <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
                     <span className="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span className="visually-hidden">Previous</span>
