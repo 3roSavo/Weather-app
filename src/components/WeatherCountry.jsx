@@ -4,6 +4,13 @@ import cursorNav from "../assets/gps_navigation_arrow_geo_icon_148674.png"
 import { useNavigate } from "react-router-dom";
 
 const WeatherCountry = () => {
+
+  const pexelsAuth = process.env.PEXELS_AUTH
+  const openweathermapAppId = process.env.OPEN_WEATHER_MAP_APP_ID
+  //console.log(pexelsAuth)
+  //console.log(openweathermapAppId)
+
+
   const [currentWeatherData, setCurrentWeatherData] = useState(null); // Attuali
   const [fiveDaysForecastData, setFiveDaysForecastData] = useState(null) // lista previsioni ogni 3 ore per 5 gg
 

@@ -22,6 +22,7 @@ const Home = () => {
     if (navigator.geolocation) { // qui controlliamo se l'oggetto navigator del browser possiede la geolocalizzazione
 
       setLoadingLocalWeather(true)
+
       navigator.geolocation.getCurrentPosition((position) => { // qui controlliamo se l'utente ha abilitato la condivisione della posizione (primo parametro logica per il si, secondo per il no)
 
         setGeolocationPermissionDenied(false)
