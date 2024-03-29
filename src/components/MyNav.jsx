@@ -44,7 +44,7 @@ const MyNav = () => {
             style={{ maxHeight: "100px" }}
             navbarScroll
           >
-            <Link to="/" className="nav-link" id="home-button" onClick={() => setNavExpanded(!navExpanded)}>
+            <Link to="/" className="nav-link" id="home-button" onClick={() => setNavExpanded(false)}>
               Home
             </Link>
             <Nav.Link target="blank" href="https://github.com/3roSavo/Weather-app.git">GitHub <i className="bi bi-github"></i></Nav.Link>
@@ -64,7 +64,7 @@ const MyNav = () => {
               variant="outline-success"
               onClick={Coordinates}
             >
-              Search
+              Cerca
             </Button>
           </Form>
         </Navbar.Collapse>

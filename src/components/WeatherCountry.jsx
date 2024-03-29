@@ -1,5 +1,3 @@
-import MyNav from "./MyNav";
-import Footer from "./Footer"
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import cursorNav from "../assets/gps_navigation_arrow_geo_icon_148674.png"
@@ -39,7 +37,7 @@ const WeatherCountry = () => {
           setLoading(false)
           console.log(obj);
           setCurrentWeatherData(obj);
-        }, 10000);
+        }, 1500);
       })
       .catch((err) => {
         setLoading(false)
@@ -68,7 +66,7 @@ const WeatherCountry = () => {
           console.log(obj);
           setFiveDaysForecastData(obj);
           setLoading(false)
-        }, 10000);
+        }, 1500);
       })
       .catch((err) => {
         console.log(err);
@@ -182,15 +180,15 @@ const WeatherCountry = () => {
   }, [currentWeatherData])
 
   return (
-    <div className="d-flex flex-column min-vh-100">
-
-      <MyNav />
+    <div className="flex-grow-1">
 
       {loading &&
-        <div className="loader my-3"></div>
+        <div className=" d-flex justify-content-center">
+          <div className="loader"></div>
+        </div>
       }
 
-      <div className=" flex-grow-1 ">
+      <div className="">
 
         {fiveDaysForecastData && (
 
@@ -508,8 +506,6 @@ const WeatherCountry = () => {
         )}
 
       </div>
-
-      <Footer />
 
     </div>
   );

@@ -1,6 +1,4 @@
 import { useEffect, useState } from "react";
-import MyNav from "./MyNav";
-import Footer from "./Footer";
 
 const Home = () => {
 
@@ -16,7 +14,7 @@ const Home = () => {
 
   const showPosition = position => {
 
-    //console.log(position)
+    console.log(position)
     //console.log("Latitude: " + position.coords.latitude + ", Longitude: " + position.coords.longitude);
 
     setUserPosition({
@@ -127,20 +125,18 @@ const Home = () => {
 
   return (
 
-    <div className="d-flex flex-column min-vh-100">
+    <div className="flex-grow-1">
 
-      <MyNav />
-
-      <div className="imgHome row mx-0 px-3 justify-content-center flex-grow-1">
+      <div className="imgHome row mx-0 px-3 justify-content-center ">
 
         <div className="col-12 col-lg-6 col-xxl-5">
           <h1 className="headings pt-5">Il tempo, in tempo reale!</h1>
           <div className="roller">
             <div id="rolltext" className="headings fs-3">
-              <div id="drop-down">quando vuoi</div>
-              <div>dove vuoi</div>
-              <div>in tempo reale</div>
-              <div>qualsiasi zona</div>
+              <div id="drop-down">Quando vuoi</div>
+              <div>Dove vuoi</div>
+              <div>Qualsiasi dettaglio</div>
+              <div>Qualsiasi zona</div>
             </div>
           </div>
 
@@ -182,7 +178,7 @@ const Home = () => {
 
           <div className="mt-2">
 
-            <div className="text-center"><span className="fs-2 bg-dark text-light bg-opacity-50 px-3 rounded-5 py-1">La tua zona <i className="bi bi-cursor-fill cursor-icon d-inline-block "></i></span></div>
+            <div className="text-center"><span className="fs-2 bg-dark text-light bg-opacity-50 px-3 rounded-5 py-1">Meteo locale <i className="bi bi-cursor-fill cursor-icon d-inline-block "></i></span></div>
 
             <div className="row justify-content-center align-items-center px-0 pt-3 pb-5 mx-0">
 
@@ -191,7 +187,7 @@ const Home = () => {
                 {userWeather &&
                   <div className="local-position-weather-card rounded-4 p-3 h-100">
 
-                    <h5 className="text-center fw-bold">{userWeather.name}</h5>
+                    <h5 className="text-center fw-bold">{userWeather.name} ({userWeather.sys.country})</h5>
 
                     <div className="row mx-0 align-items-center justify-content-center">
                       <img className="local-weather-icon px-3" src={`http://openweathermap.org/img/wn/${userWeather.weather[0].icon}@4x.png`} alt="" />
@@ -291,8 +287,6 @@ const Home = () => {
         }
 
       </div>
-
-      <Footer />
 
     </div>
   );

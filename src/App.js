@@ -1,6 +1,7 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import MyNav from "./components/MyNav";
+import Footer from "./components/Footer";
 import Home from "./components/Home";
 import WeatherCountry from "./components/WeatherCountry";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -8,17 +9,23 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 function App() {
 
   return (
-    <BrowserRouter>
+    <div className="d-flex flex-column min-vh-100">
+      <BrowserRouter>
 
-      <Routes>
+        <MyNav />
 
-        <Route element={<Home />} path="/"></Route>
+        <Routes>
 
-        <Route element={<WeatherCountry />} path="/weatherCountry"></Route>
+          <Route element={<Home />} path="/"></Route>
 
-      </Routes>
+          <Route element={<WeatherCountry />} path="/weatherCountry"></Route>
 
-    </BrowserRouter>
+        </Routes>
+
+        <Footer />
+
+      </BrowserRouter>
+    </div>
   );
 }
 
