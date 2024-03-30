@@ -191,11 +191,10 @@ const Home = () => {
               </div>
             }
 
-            <div className="row justify-content-center px-0 mx-0 overflow-y-hidden weather-box">
+            {weatherForecast &&
+              <div className="row justify-content-center px-0 mx-0 overflow-y-hidden weather-box">
 
-              {weatherForecast &&
-
-                weatherForecast.map(element => {
+                {weatherForecast.map(element => {
 
                   return <div className="col-6 col-sm-4 col-md-3 col-lg-4 col-xxl-3 p-2" key={element.id}>
 
@@ -211,9 +210,9 @@ const Home = () => {
                     </div>
 
                   </div>
-                })
-              }
-            </div>
+                })}
+              </div>
+            }
           </div>
 
         </div>
