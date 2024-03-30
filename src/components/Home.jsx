@@ -168,6 +168,7 @@ const Home = () => {
       <div className="imgHome row mx-0 px-3 justify-content-center pt-5">
 
         <div className="col-12 col-lg-6 col-xxl-5 ps-3 pe-0">
+
           <h1 className="headings">Il tempo, in tempo reale!</h1>
           <div className="roller">
             <div id="rolltext" className="headings fs-3">

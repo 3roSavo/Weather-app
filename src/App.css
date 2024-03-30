@@ -84,8 +84,6 @@ body {
 
 }
 
-
-
 .bg-nav {
   background: linear-gradient(90deg, rgba(250, 197, 29, 1) 0%, rgba(68, 85, 115, 1) 80%) !important;
 }
@@ -170,9 +168,6 @@ body {
   text-shadow: 1px 1px 5px rgb(255, 255, 255);
 }
 
-
-
-
 @keyframes slide {
   0% {
     top: 0;
@@ -199,7 +194,7 @@ body {
 
 .roller {
   height: 40px !important;
-  line-height: 1.9rem !important;
+  line-height: 39px !important;
   position: relative;
   overflow: hidden;
   width: 100%;
