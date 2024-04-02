@@ -114,7 +114,7 @@ const Home = () => {
     try {
 
       const requests = countries.map(location => {
-        return fetch("https://api.openweathermap.org/data/2.5/weather?q=" + location + "&units=metric&lang=it&appid=a793bd006b5b59f0fb2f211b3e3cd738")
+        return fetch("https://api.openweathermap.org/data/2.5/weather?q=" + location + `&units=metric&lang=it&appid=${openweathermapAppId}`)
           .then(response => {
             if (response.ok) {
               return response.json()
