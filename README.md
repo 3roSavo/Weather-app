@@ -1,70 +1,26 @@
-# Getting Started with Create React App
+## What's the weather like ⛅︎⛈
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Due modi di visitare il sito
 
-## Available Scripts
+1 METODO (dal web)
+- Essendo il sito presente nel web potete tranquillamente raggiungerlo al segeunte Link  https://weather-app-three-wine-80.vercel.app/
 
-In the project directory, you can run:
+2 METODO (in locale con npm)
+- scaricando il progetto github
+- installando le dipendenze richieste in automatico da terminale col comando "npm install"
+- cambiare il nome del file envExample.env in .env
+- creando un account sul sito https://openweathermap.org/ e reperire il proprio APP ID da inserire nel file .env
+- creando un account su https://www.pexels.com/ e reperire la propria API KEY da inserire nel file .env
+- avviare l'applicazione col comando "npm start"
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+L'applicazione è un sito web per le previsioni meteo.
+Diverse sono le opzioni a disposizione dell'utente:
+- un'anteprima nella rotta Home, con diverse previsioni globali a scorrimento
+- possibilità nella homepage (nel caso l'utente dia l'accesso alla localizzazione) di ottenere immediatamente previsioni attuali del meteo locale con la geolocalizzazione
+- ricerca mediante campo di input nella navbar di qualsiasi zona del mondo e ottenere di conseguenza le previsoni di tale zona
+- previsioni complete attuali e aggiornamenti ogni 3 ore
+- previsoni per i successivi 5 giorni
+- ora locale della zona cercata, aggiornata al secondo, comprensiva di giorno della settimana, numero del giorno e mese
+- foto di copertina (quando disponibile) per i risultati delle ricerche
+- galleria di foto (quando disponibile) per il meteo locale nella homepage
