@@ -108,7 +108,7 @@ const Home = () => {
 
   const getRandomWeatherForecasts = async () => {
 
-    setWeatherForecast(null)
+    //setWeatherForecast(null)
     setLoadingRandomWeather(true)
 
     try {
@@ -192,7 +192,7 @@ const Home = () => {
               </div>
             }
 
-            {weatherForecast &&
+            {weatherForecast && weatherForecast.length > 0 &&
               <div className="row justify-content-center px-0 mx-0 overflow-y-hidden weather-box">
 
                 {weatherForecast.map(element => {
