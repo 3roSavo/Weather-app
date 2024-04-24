@@ -387,16 +387,16 @@ const WeatherCountry = () => {
 
                   <div className="d-flex flex-column flex-md-row flex-md-wrap col-6 col-sm-4 col-md-12  justify-content-around align-items-center pb-md-0 pb-lg-0 align-items-md-center p-0 text-center">
 
-                    <div className="fs-5 fw-bold col-6 col-sm-4  col-md-12 col-lg-4">
+                    <div className="fs-5 fw-bold col-12 col-md-12 col-lg-4">
                       {fiveDaysForecastData.list[0].dt_txt.slice(10, 16)}
                     </div>
 
-                    <div className="col-6 col-sm-4 col-md-6 col-lg-4">
+                    <div className="col-12 col-md-6 col-lg-4">
                       <img className="hourly-icon" src={`https://openweathermap.org/img/wn/${fiveDaysForecastData.list[0].weather[0].icon}@4x.png`} alt="hourly-icon"></img>
                       <div className=" fw-bold">{fiveDaysForecastData.list[0].main.temp.toString().slice(0, 4)}°C</div>
                     </div>
 
-                    <div className="col-6 col-sm-4 col-md-6 col-lg-4">
+                    <div className="col-12 col-md-6 col-lg-4">
                       <img className="navigation-icon mt-2 " style={{ transform: `rotate(${fiveDaysForecastData.list[0].wind.deg}deg)` }} src={cursorNav} alt="cursor-icon" />
                       <div className="fw-bold pt-2 ">{fiveDaysForecastData.list[0].wind.speed}m/s</div>
                     </div>
@@ -405,16 +405,16 @@ const WeatherCountry = () => {
 
                   <div className="d-flex flex-column flex-md-row flex-md-wrap col-6 col-sm-4 col-md-12  justify-content-around align-items-center pb-md-0 pb-lg-0 align-items-md-center p-0 text-center">
 
-                    <div className="fs-5 fw-bold col-6 col-sm-4  col-md-12 col-lg-4">
+                    <div className="fs-5 fw-bold col-12 col-md-12 col-lg-4">
                       {fiveDaysForecastData.list[1].dt_txt.slice(10, 16)}
                     </div>
 
-                    <div className="col-6 col-sm-4 col-md-6 col-lg-4">
+                    <div className="col-12 col-md-6 col-lg-4">
                       <img className="hourly-icon" src={`https://openweathermap.org/img/wn/${fiveDaysForecastData.list[1].weather[0].icon}@4x.png`} alt="hourly-icon"></img>
                       <div className=" fw-bold">{fiveDaysForecastData.list[1].main.temp.toString().slice(0, 4)}°C</div>
                     </div>
 
-                    <div className="col-6 col-sm-4 col-md-6 col-lg-4">
+                    <div className="col-12 col-md-6 col-lg-4">
                       <img className="navigation-icon mt-2 " style={{ transform: `rotate(${fiveDaysForecastData.list[1].wind.deg}deg)` }} src={cursorNav} alt="cursor-icon" />
                       <div className="fw-bold pt-2 ">{fiveDaysForecastData.list[1].wind.speed}m/s</div>
                     </div>
@@ -425,16 +425,16 @@ const WeatherCountry = () => {
 
                   <div className="d-flex flex-column flex-md-row flex-md-wrap col-6 col-sm-4 col-md-12  justify-content-around align-items-center pb-md-0 pb-lg-0 align-items-md-center p-0 text-center">
 
-                    <div className="fs-5 fw-bold col-6 col-sm-4  col-md-12 col-lg-4">
+                    <div className="fs-5 fw-bold col-12 col-md-12 col-lg-4">
                       {fiveDaysForecastData.list[2].dt_txt.slice(10, 16)}
                     </div>
 
-                    <div className="col-6 col-sm-4 col-md-6 col-lg-4">
+                    <div className="col-12 col-md-6 col-lg-4">
                       <img className="hourly-icon" src={`https://openweathermap.org/img/wn/${fiveDaysForecastData.list[2].weather[0].icon}@4x.png`} alt="hourly-icon"></img>
                       <div className=" fw-bold">{fiveDaysForecastData.list[2].main.temp.toString().slice(0, 4)}°C</div>
                     </div>
 
-                    <div className="col-6 col-sm-4 col-md-6 col-lg-4">
+                    <div className="col-12 col-md-6 col-lg-4">
                       <img className="navigation-icon mt-2 " style={{ transform: `rotate(${fiveDaysForecastData.list[2].wind.deg}deg)` }} src={cursorNav} alt="cursor-icon" />
                       <div className="fw-bold pt-2 ">{fiveDaysForecastData.list[2].wind.speed}m/s</div>
                     </div>
@@ -445,16 +445,16 @@ const WeatherCountry = () => {
 
                   <div className="d-flex flex-column flex-md-row flex-md-wrap col-6 col-sm-4 col-md-12  justify-content-around align-items-center pb-sm-2 pb-md-0 pb-lg-0 align-items-md-center p-0 text-center">
 
-                    <div className="fs-5 fw-bold col-6 col-sm-4  col-md-12 col-lg-4">
+                    <div className="fs-5 fw-bold col-12 col-md-12 col-lg-4">
                       {fiveDaysForecastData.list[3].dt_txt.slice(10, 16)}
                     </div>
 
-                    <div className="col-6 col-sm-4 col-md-6 col-lg-4">
+                    <div className="col-12 col-md-6 col-lg-4">
                       <img className="hourly-icon" src={`https://openweathermap.org/img/wn/${fiveDaysForecastData.list[3].weather[0].icon}@4x.png`} alt="hourly-icon"></img>
                       <div className=" fw-bold">{fiveDaysForecastData.list[3].main.temp.toString().slice(0, 4)}°C</div>
                     </div>
 
-                    <div className="col-6 col-sm-4 col-md-6 col-lg-4">
+                    <div className="col-12 col-md-6 col-lg-4">
                       <img className="navigation-icon mt-2 " style={{ transform: `rotate(${fiveDaysForecastData.list[3].wind.deg}deg)` }} src={cursorNav} alt="cursor-icon" />
                       <div className="fw-bold pt-2 ">{fiveDaysForecastData.list[3].wind.speed}m/s</div>
                     </div>
@@ -465,16 +465,16 @@ const WeatherCountry = () => {
 
                   <div className="d-flex flex-column flex-md-row flex-md-wrap col-6 col-sm-4 col-md-12  justify-content-around align-items-center pb-2 pb-md-0 pb-lg-0 align-items-md-center p-0 text-center">
 
-                    <div className="fs-5 fw-bold col-6 col-sm-4  col-md-12 col-lg-4">
+                    <div className="fs-5 fw-bold col-12 col-md-12 col-lg-4">
                       {fiveDaysForecastData.list[4].dt_txt.slice(10, 16)}
                     </div>
 
-                    <div className="col-6 col-sm-4 col-md-6 col-lg-4">
+                    <div className="col-12 col-md-6 col-lg-4">
                       <img className="hourly-icon" src={`https://openweathermap.org/img/wn/${fiveDaysForecastData.list[4].weather[0].icon}@4x.png`} alt="hourly-icon"></img>
                       <div className=" fw-bold">{fiveDaysForecastData.list[4].main.temp.toString().slice(0, 4)}°C</div>
                     </div>
 
-                    <div className="col-6 col-sm-4 col-md-6 col-lg-4">
+                    <div className="col-12 col-md-6 col-lg-4">
                       <img className="navigation-icon mt-2 " style={{ transform: `rotate(${fiveDaysForecastData.list[4].wind.deg}deg)` }} src={cursorNav} alt="cursor-icon" />
                       <div className="fw-bold pt-2 ">{fiveDaysForecastData.list[4].wind.speed}m/s</div>
                     </div>
@@ -483,16 +483,16 @@ const WeatherCountry = () => {
 
                   <div className="d-flex flex-column d-md-none flex-md-row flex-md-wrap col-6 col-sm-4 col-md-12  justify-content-around align-items-center pb-2 pb-md-0 align-items-md-center p-0 text-center">
 
-                    <div className="fs-5 fw-bold col-6 col-sm-4  col-md-12 col-lg-4">
+                    <div className="fs-5 fw-bold col-12 col-md-12 col-lg-4">
                       {fiveDaysForecastData.list[5].dt_txt.slice(10, 16)}
                     </div>
 
-                    <div className="col-6 col-sm-4 col-md-6 col-lg-4">
+                    <div className="col-12 col-md-6 col-lg-4">
                       <img className="hourly-icon" src={`https://openweathermap.org/img/wn/${fiveDaysForecastData.list[5].weather[0].icon}@4x.png`} alt="hourly-icon"></img>
                       <div className=" fw-bold">{fiveDaysForecastData.list[5].main.temp.toString().slice(0, 4)}°C</div>
                     </div>
 
-                    <div className="col-6 col-sm-4 col-md-6 col-lg-4">
+                    <div className="col-12 col-md-6 col-lg-4">
                       <img className="navigation-icon mt-2 " style={{ transform: `rotate(${fiveDaysForecastData.list[5].wind.deg}deg)` }} src={cursorNav} alt="cursor-icon" />
                       <div className="fw-bold pt-2 ">{fiveDaysForecastData.list[5].wind.speed}m/s</div>
                     </div>
